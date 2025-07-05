@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:projectr/main/flavors.dart';
+import 'package:projectr/providers/app_theme_provider.dart';
+import 'package:projectr/routes/app_router.dart';
 import 'package:projectr/shared/widgets/dismiss_keyboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,8 +18,8 @@ class MyApp extends ConsumerStatefulWidget {
 }
 
 class _MyAppState extends ConsumerState<MyApp> {
-  // final appRouter = AppRouter();
-  Timer? _timer;
+  final appRouter = AppRouter();
+
   @override
   void initState() {
     //_initializeTimer();
@@ -26,8 +28,8 @@ class _MyAppState extends ConsumerState<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    //final appThemeManager = ref.watch(themeProvider);
-    //final currentTheme = appThemeManager.currentTheme;
+    final appThemeManager = ref.watch(themeProvider);
+    final currentTheme = appThemeManager.currentTheme;
 
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
@@ -42,7 +44,7 @@ class _MyAppState extends ConsumerState<MyApp> {
           ensureScreenSize: true,
           child: MaterialApp.router(
             title: F.shared.appName,
-            //   theme: currentTheme,
+            theme: currentTheme,
             // routeInformationParser: appRouter.defaultRouteParser(),
             // routerDelegate: appRouter.delegate(),
             debugShowCheckedModeBanner: false,

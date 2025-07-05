@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:projectr/providers/app_theme_provider.dart';
 import 'package:projectr/shared/configs/app_configs.dart';
 import 'package:projectr/shared/constants.dart';
 import 'package:projectr/shared/enums.dart';
@@ -24,7 +25,7 @@ void switchTheme({BuildContext? context, WidgetRef? ref}) {
   AppThemeMode newMode = CURRENT_APP_THEME_MODE == AppThemeMode.dark
       ? AppThemeMode.light
       : AppThemeMode.dark;
-  //ref?.read(themeProvider.notifier).switchThemeMode(newMode);
+  ref?.read(themeProvider.notifier).switchThemeMode(newMode);
 }
 
 // void resetConstants() {
@@ -82,10 +83,10 @@ class ThemeSwitch extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // AppThemeMode newMode = CURRENT_APP_THEME_MODE == AppThemeMode.dark
-        //     ? AppThemeMode.light
-        //     : AppThemeMode.dark;
-        // ref.read(themeProvider.notifier).switchThemeMode(newMode);
+        AppThemeMode newMode = CURRENT_APP_THEME_MODE == AppThemeMode.dark
+            ? AppThemeMode.light
+            : AppThemeMode.dark;
+        ref.read(themeProvider.notifier).switchThemeMode(newMode);
       },
       child: const Text('SWITCH MODE'),
     );

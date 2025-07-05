@@ -1,9 +1,6 @@
 // import 'package:auto_route/auto_route.dart';
-// import 'package:projectr/routes/app_router.gr.dart';
 // import 'package:projectr/shared/constants.dart';
 // import 'package:projectr/shared/data/local/shared_pref_service.dart';
-// import 'package:projectr/shared/domain/providers/shared_preference_service_provider.dart';
-// import 'package:projectr/shared/helpers/helper.dart';
 // import 'package:projectr/shared/themes/app_colors.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
