@@ -1,0 +1,30 @@
+{
+     "configurations": [
+        
+        {
+            "name": "csalpha-dev",
+            "request": "launch",
+            "program": "lib/main/main_dev.dart",
+            "type": "dart",
+            "args": [
+                "-t",
+                "lib/main/main_dev.dart",
+                "--flavor",
+                "dev",
+            ]
+        },
+
+         {
+            "name": "csalpha-prod",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main/main_prod.dart",
+            "args": [
+                "-t",
+                "lib/main/main_prod.dart",
+                "--flavor",
+                "prod"
+            ]
+        }
+    ]
+}
