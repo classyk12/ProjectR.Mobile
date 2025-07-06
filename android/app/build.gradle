@@ -34,12 +34,12 @@ android {
   productFlavors {
       prod {    
         applicationIdSuffix ".prod"
-          resValue "string", "app_name", "CSAlpha"
+          resValue "string", "app_name", "ProjectR"
           versionNameSuffix ".prod"
       }
       dev {    
           applicationIdSuffix ".dev"
-          resValue "string", "app_name", "CSAlpha Dev"
+          resValue "string", "app_name", "ProjectR Dev"
           versionNameSuffix ".dev"
       }
   }
