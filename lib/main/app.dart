@@ -45,8 +45,8 @@ class _MyAppState extends ConsumerState<MyApp> {
           child: MaterialApp.router(
             title: F.shared.appName,
             theme: currentTheme,
-            // routeInformationParser: appRouter.defaultRouteParser(),
-            // routerDelegate: appRouter.delegate(),
+            routeInformationParser: appRouter.defaultRouteParser(),
+            routerDelegate: appRouter.delegate(),
             debugShowCheckedModeBanner: false,
           ),
         ),

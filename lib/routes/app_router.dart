@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:projectr/routes/app_router.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
@@ -7,9 +8,8 @@ class AppRouter extends RootStackRouter {
       const RouteType.adaptive(); //.cupertino, .adaptive ..etc
 
   @override
-  List<AutoRoute> get routes => [
-        // AutoRoute(page: SplashRoute.page, initial: true)
-      ];
+  List<AutoRoute> get routes =>
+      [AutoRoute(page: SplashRoute.page, initial: true)];
 
   @override
   List<AutoRouteGuard> get guards => [
