@@ -1,4 +1,3 @@
-import 'package:projectr/shared/constants.dart';
 import 'package:projectr/shared/data/local/storage_service.dart';
 import 'package:projectr/shared/domain/models/authentication/login_model.dart';
 
@@ -17,7 +16,7 @@ class LoginUserDataSourceImpl extends LoginUserDataSource {
   final StorageService storageService;
 
   @override
-  String get storageKey => LOGIN_USER_STORAGE_KEY;
+  String get storageKey => '';
 
   @override
   Future<UserData?> fetchUser() async {

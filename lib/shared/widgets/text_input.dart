@@ -50,7 +50,7 @@ class TextInput extends StatefulWidget {
     this.suffixWidget,
     this.icon,
     this.borderWidth,
-    this.borderColor = AppColors.lightGrey,
+    this.borderColor = AppColors.primary,
     this.focusedBorderColor,
     this.labelTextColor,
     this.enabled,

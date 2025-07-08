@@ -18,7 +18,7 @@ Widget showPasswordValidationStatus(String text, BuildContext context,
               border: Border.all(
                   color: status == true
                       ? AppColors.transparent
-                      : AppColors.lightGrey),
+                      : AppColors.primary),
               color: status == true
                   ? Theme.of(context)
                       .buttonTheme
@@ -34,7 +34,7 @@ Widget showPasswordValidationStatus(String text, BuildContext context,
               : const SizedBox(),
         ),
         SizedBox(width: 10.w),
-        Text(text, style: const TextStyle(color: AppColors.lightGrey))
+        Text(text, style: const TextStyle(color: AppColors.primary))
       ],
     ),
   );
@@ -51,7 +51,7 @@ Widget passwordValidationWidget(
     padding: EdgeInsets.only(left: 10.w, right: 10.w, bottom: 10.h, top: 15.h),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(10.r)),
-      border: Border.all(color: AppColors.lightGrey, width: 0.3.w),
+      border: Border.all(color: AppColors.primary, width: 0.3.w),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,

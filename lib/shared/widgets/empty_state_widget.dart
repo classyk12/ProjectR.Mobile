@@ -1,5 +1,4 @@
 import 'package:projectr/shared/helpers/helper.dart';
-import 'package:projectr/shared/themes/app_colors.dart';
 import 'package:projectr/shared/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,7 +44,7 @@ class NoDataWidget extends StatelessWidget {
             Text(
               subtitle,
               style: const TextStyle(
-                color: AppColors.grey,
+                color: Colors.grey,
               ),
               textAlign: TextAlign.center,
             ),

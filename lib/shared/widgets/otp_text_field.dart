@@ -76,7 +76,7 @@ class _OTPInputFieldState extends State<OTPInputField> {
                 borderSide: BorderSide(
                   color: _controllers[index].text.isNotEmpty
                       ? AppColors.primary
-                      : AppColors.lightGrey,
+                      : AppColors.primary,
                 ),
                 borderRadius: BorderRadius.circular(10.r),
               ),
@@ -84,7 +84,7 @@ class _OTPInputFieldState extends State<OTPInputField> {
                 borderSide: BorderSide(
                     color: _controllers[index].text.isNotEmpty
                         ? AppColors.primary
-                        : AppColors.lightGrey),
+                        : AppColors.primary),
                 borderRadius: BorderRadius.circular(10.r),
               ),
             ),

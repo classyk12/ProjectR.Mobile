@@ -62,12 +62,12 @@ Widget _dataField(
           children: [
             Text(title,
                     style: TextStyle(
-                        fontFamily: AppTextStyles.fontFamily2,
+                        fontFamily: AppTextStyles.fontFamily,
                         color: Theme.of(context).textTheme.bodyLarge!.color!))
                 .paddingSymmetric(vertical: 10.h),
             Text(' *',
                     style: TextStyle(
-                        fontFamily: AppTextStyles.fontFamily2,
+                        fontFamily: AppTextStyles.fontFamily,
                         color: validator == null
                             ? AppColors.transparent
                             : AppColors.red))
@@ -77,8 +77,8 @@ Widget _dataField(
         TextInput(
             enabled: enabled,
             labelText: labelText,
-            labelTextColor: AppColors.lightGrey,
-            borderColor: AppColors.textFieldBorderColor,
+            labelTextColor: AppColors.primary,
+            borderColor: AppColors.primary,
             validator: validator,
             labelBehavior: FloatingLabelBehavior.never,
             focusNode: null,

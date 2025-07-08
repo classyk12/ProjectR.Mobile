@@ -14,55 +14,31 @@ final themeProvider = StateNotifierProvider<ThemeNotifier, ThemeState>((ref) {
 
 class ThemeState {
   final AppThemeMode mode;
-  final AppModule module;
-
   ThemeState({
     required this.mode,
-    required this.module,
   });
 
-  ThemeData get currentTheme {
-    CURRENT_APP_THEME_MODE = mode;
-    switch (module) {
-      case AppModule.general:
-        return mode == AppThemeMode.light
-            ? ModuleThemes.generalLightTheme
-            : ModuleThemes.generalDarkTheme;
-      case AppModule.securities:
-        return mode == AppThemeMode.light
-            ? ModuleThemes.securitiesLightTheme
-            : ModuleThemes.securitiesDarkTheme;
-      case AppModule.assetManagement:
-        return mode == AppThemeMode.light
-            ? ModuleThemes.assetManagementLightTheme
-            : ModuleThemes.assetManagementDarkTheme;
-
-      case AppModule.mutualFunds:
-        return mode == AppThemeMode.light
-            ? ModuleThemes.mutualFundLightTheme
-            : ModuleThemes.mutualFundDarkTheme;
-      default:
-        throw Exception("Module not implemented");
-    }
-  }
+  ThemeData get currentTheme => CURRENT_APP_THEME_MODE == AppThemeMode.light
+      ? AppTheme.lightTheme
+      : AppTheme.darkTheme;
 }
 
 // StateNotifier to manage theme state
 class ThemeNotifier extends StateNotifier<ThemeState> {
   final StorageService storageService;
   ThemeNotifier({required this.storageService})
-      : super(ThemeState(mode: AppThemeMode.light, module: AppModule.general)) {
+      : super(ThemeState(mode: AppThemeMode.light)) {
     _getCurrentTheme();
   }
 
   void switchThemeMode(AppThemeMode mode) {
-    state = ThemeState(mode: mode, module: state.module);
+    state = ThemeState(mode: mode);
     CURRENT_APP_THEME_MODE = mode;
     storageService.set(APP_THEME_STORAGE_KEY, state.mode.name);
   }
 
   void switchModule(AppModule module) {
-    state = ThemeState(mode: state.mode, module: module);
+    state = ThemeState(mode: state.mode);
   }
 
   void _getCurrentTheme() async {
@@ -72,8 +48,8 @@ class ThemeNotifier extends StateNotifier<ThemeState> {
       storageService.set(APP_THEME_STORAGE_KEY, CURRENT_APP_THEME_MODE.name);
     } else {
       state = ThemeState(
-          mode: AppThemeMode.values.byName(theme.toString()),
-          module: AppModule.general);
+        mode: AppThemeMode.values.byName(theme.toString()),
+      );
     }
   }
 }

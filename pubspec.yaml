@@ -146,7 +146,7 @@ flutter:
   - assets/images/
   # - assets/pdfs/
 
-  # fonts:
+  fonts:
     # - family: PlusJakartaSans
     #   fonts:
     #     - asset: assets/fonts/PlusJakartaSans-Regular.ttf
@@ -157,11 +157,11 @@ flutter:
     #       weight: 600
     
 
-    # - family: Inter
-    #   fonts:
-    #     - asset: assets/fonts/Inter-VariableFont_opsz,wght.ttf
-    #     - asset: assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf
-    #       style: italic
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-VariableFont_opsz,wght.ttf
+        - asset: assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf
+          style: italic
 
         # - asset: fonts/PlusJakartaSans-Bold.ttf
         #   weight: 600

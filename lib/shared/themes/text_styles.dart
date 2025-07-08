@@ -2,9 +2,7 @@ import 'package:projectr/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyles {
-  static const String fontFamily = PLUSJAKARTASANS;
-
-  static const String fontFamily2 = INTER;
+  static const String fontFamily = INTER;
 
   /// Text style for body
   static const TextStyle bodyLg = TextStyle(

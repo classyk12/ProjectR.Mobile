@@ -20,17 +20,15 @@ class Styles {
               hintText: labelText,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.r),
-                borderSide:
-                    const BorderSide(color: AppColors.textFieldBorderColor),
+                borderSide: const BorderSide(color: AppColors.primary),
               ),
               disabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.r),
-                borderSide: const BorderSide(color: AppColors.grey),
+                borderSide: const BorderSide(color: AppColors.primary),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.r),
-                borderSide:
-                    const BorderSide(color: AppColors.textFieldBorderColor),
+                borderSide: const BorderSide(color: AppColors.primary),
               ),
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.r),

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:projectr/shared/configs/app_configs.dart';
-import 'package:projectr/shared/constants.dart';
 import 'package:projectr/shared/helpers/util.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -39,7 +38,7 @@ class SocketService implements ISocketService {
         customDebugPrint(message: 'I have connected>>');
       });
 
-      socket.on(SOCKET_EVENT_KEY, (data) {
+      socket.on('', (data) {
         _streamController.add(data);
       });
 

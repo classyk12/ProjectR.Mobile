@@ -1,5 +1,3 @@
-import 'package:projectr/shared/constants.dart';
-import 'package:projectr/shared/helpers/helper.dart';
 import 'package:get/utils.dart';
 
 class Validator {
@@ -44,27 +42,12 @@ class Validator {
     return null;
   }
 
-  static String? validateMinAmountAndDigit(String? value) {
-    var checkdigits = validateDigit(value);
-    if (checkdigits != null) {
-      return checkdigits;
-    }
-    return validateMinimumTransferAmount(value);
-  }
-
   static String? validateDigit(String? value) {
     if (value == null ||
         value.isEmpty ||
         !value.contains(RegExp(r'(?=.*?[0-9])')) ||
         double.parse(value) < 1) {
       return 'Enter a valid value';
-    }
-    return null;
-  }
-
-  static String? validateMinimumTransferAmount(String? value) {
-    if (double.parse(value ?? '0') < MINIMUM_TRANSFER_AMOUNT) {
-      return '$value must not be less than ${AppHelper.getCurrencySymbol('NGN')}$MINIMUM_TRANSFER_AMOUNT';
     }
     return null;
   }

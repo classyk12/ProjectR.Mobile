@@ -13,7 +13,7 @@ class DocumentUploaderWidget extends StatefulWidget {
   const DocumentUploaderWidget({
     super.key,
     required this.options,
-    this.backgroundColor = AppColors.extraLightGrey,
+    this.backgroundColor = AppColors.primary,
   });
 
   @override

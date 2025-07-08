@@ -4,6 +4,7 @@ import 'package:projectr/shared/domain/providers/shared_preference_service_provi
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:projectr/shared/helpers/helper.dart';
 import 'package:projectr/shared/themes/app_colors.dart';
 
 @RoutePage()
@@ -18,7 +19,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   dynamic nextScreen(BuildContext context, SharedPrefsService service) async {
 //    var isvisited = await service.has(VISITED_STORAGE_KEY);
 
-    Future.delayed(const Duration(milliseconds: 250), () {
+    Future.delayed(const Duration(seconds: 10), () {
       // if (context.mounted) {
       //   if (isvisited) {
       //     AutoRouter.of(context)
@@ -41,24 +42,30 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SizedBox(
-      // decoration: BoxDecoration(
-      //     color: Theme.of(context).colorScheme.surface,
-      //     image: DecorationImage(
-      //         fit: BoxFit.cover,
-      //         //  BoxFit.fitHeight,
-      //         image: AssetImage(
-      //           AppHelper.getImageFullPath(
-      //             'splash_background.png',
-      //           ),
-      //         ))),
+        body: Container(
+      decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
+          image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage(
+                AppHelper.getImageFullPath(
+                  'splash.png',
+                ),
+              ))),
       height: MediaQuery.sizeOf(context).height,
       width: MediaQuery.sizeOf(context).width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.home, color: Colors.blue),
-          Text('Welcome to ProjectR',
+          Image.asset(
+            AppHelper.getImageFullPath(
+              'logo.png',
+            ),
+            width: 89.w,
+            height: 75.h,
+            color: Colors.white,
+          ),
+          Text('ProjectR',
               style: TextStyle(
                   color: AppColors.black,
                   fontSize: 20.sp,
