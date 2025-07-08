@@ -1,16 +1,14 @@
 import 'dart:async';
 import 'package:projectr/shared/data/local/storage_service.dart';
-import 'package:projectr/shared/helpers/encryption_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefsService implements StorageService {
   SharedPreferences? sharedPreferences;
-  final IEncryptionHelper encryptionHelper;
 
   final Completer<SharedPreferences> initCompleter =
       Completer<SharedPreferences>();
 
-  SharedPrefsService({required this.encryptionHelper});
+  SharedPrefsService();
 
   @override
   void init() {
@@ -27,8 +25,7 @@ class SharedPrefsService implements StorageService {
     if (result == null) {
       return '';
     }
-    var decrypt = encryptionHelper.decryptData(result.toString());
-    return decrypt;
+    return result.toString();
   }
 
   @override
@@ -55,8 +52,7 @@ class SharedPrefsService implements StorageService {
     if (data != null) {
       sharedPreferences = await initCompleter.future;
       //encrypt data
-      var encrypt = encryptionHelper.encryptData(data);
-      return await sharedPreferences!.setString(key, encrypt);
+      return await sharedPreferences!.setString(key, data);
     }
 
     return false;
