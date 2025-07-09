@@ -15,6 +15,7 @@ class Button extends StatelessWidget {
   final Widget? suffixicon;
   final String? text;
   final Color? borderColor;
+  final FontWeight? fontWeight;
 
   const Button(
       {@required this.onPressed,
@@ -28,6 +29,7 @@ class Button extends StatelessWidget {
       this.suffixicon,
       this.text,
       this.borderColor = AppColors.transparent,
+      this.fontWeight = FontWeight.normal,
       super.key});
 
   @override
@@ -53,7 +55,7 @@ class Button extends StatelessWidget {
                         fontSize: 14.sp,
                         fontFamily: AppTextStyles.fontFamily,
                         fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: fontWeight,
                         color: textColor ?? AppColors.white))),
             suffixicon ?? const SizedBox(),
           ],

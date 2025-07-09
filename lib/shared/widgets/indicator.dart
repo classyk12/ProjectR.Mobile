@@ -17,14 +17,11 @@ class IndicatorWidget extends StatelessWidget {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 150),
       margin: EdgeInsets.symmetric(horizontal: 4.0.w),
-      height: 5.h,
-      width: isActive ? 15.0.w : 15.w,
+      height: 7.h,
+      width: 70.w,
       decoration: BoxDecoration(
-        color: isActive ? activeColor : activeColor.withOpacity(0.5),
-        borderRadius: isActive
-            ? BorderRadius.all(Radius.circular(16.r))
-            : BorderRadius.all(Radius.circular(5.r)),
-      ),
+          color: isActive ? activeColor : AppColors.white,
+          borderRadius: BorderRadius.all(Radius.circular(16.r))),
     );
   }
 }

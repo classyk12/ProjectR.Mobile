@@ -8,8 +8,10 @@ class AppRouter extends RootStackRouter {
       const RouteType.adaptive(); //.cupertino, .adaptive ..etc
 
   @override
-  List<AutoRoute> get routes =>
-      [AutoRoute(page: SplashRoute.page, initial: true)];
+  List<AutoRoute> get routes => [
+        AutoRoute(page: SplashRoute.page, initial: true),
+        AutoRoute(page: OnboardingRoute.page)
+      ];
 
   @override
   List<AutoRouteGuard> get guards => [
