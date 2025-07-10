@@ -28,25 +28,6 @@ void switchTheme({BuildContext? context, WidgetRef? ref}) {
   ref?.read(themeProvider.notifier).switchThemeMode(newMode);
 }
 
-// void resetConstants() {
-//   ACCOUNT_CREATION_MODEL = SignUpModel();
-//   USER_DATA = LoginUser.initial();
-//   AUTH_TOKEN = '';
-//   SELECTED_INVESTMENT_PATH = '';
-//   INVESTMENT_ACCOUNTS = <InvestmentAccountModel>[];
-//   EQUITIES_LIST = <Equities>[];
-//   EMBASSIES_LIST = <EmbassyModel>[];
-//   MY_MUTUAL_FUNDS_LIST = <MutualFundAccountModel>[];
-//   MY_BANK_ACCOUNTS = <BankAccountModel>[];
-//   COUNTRIES_LIST = <CountryModel>[];
-//   RELATIONSHIP_LIST = <RelationShipModel>[];
-//   PRODUCT_TYPES = <String, dynamic>{};
-
-//   ///This flag indicates if a new update of the product type should be gotten from the api irrespecitive if a cache value exist before
-//   getProductTypeByForce = true;
-//   shouldReadFromCache = true;
-// }
-
 launchbrowser({String? urlString}) async {
   var baseUrl = AppConfigs.websiteUrl;
   String url = urlString ?? baseUrl;

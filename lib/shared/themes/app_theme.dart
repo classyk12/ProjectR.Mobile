@@ -14,7 +14,7 @@ class AppTheme {
         buttonTheme: const ButtonThemeData(
             colorScheme: ColorScheme(
                 brightness: Brightness.dark,
-                primary: Color(0xff659AC9), //Color(0xff9BC0FF),
+                primary: AppColors.primary, //Color(0xff9BC0FF),
                 onPrimary: AppColors.primary,
                 secondary: AppColors.secondary,
                 onSecondary: AppColors.secondary,
