@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:projectr/routes/app_router.gr.dart';
-import 'package:projectr/shared/constants.dart';
 import 'package:projectr/shared/data/local/shared_pref_service.dart';
 import 'package:projectr/shared/domain/providers/shared_preference_service_provider.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,7 @@ class SplashScreen extends ConsumerStatefulWidget {
 
 class _SplashScreenState extends ConsumerState<SplashScreen> {
   dynamic nextScreen(BuildContext context, SharedPrefsService service) async {
-    var isvisited = await service.has(VISITED_STORAGE_KEY);
+    // var isvisited = await service.has(VISITED_STORAGE_KEY);
 
     Future.delayed(const Duration(seconds: 1), () {
       if (context.mounted) {

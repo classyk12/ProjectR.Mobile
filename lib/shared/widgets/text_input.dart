@@ -94,7 +94,6 @@ class _TextInputState extends State<TextInput> {
       obscureText: widget.isPassword ?? false,
       controller: widget.controller,
       keyboardType: widget.keyboardType,
-      //    keyboardAppearance: ThemeMode.,
       style: TextStyle(
         color: widget.textColor,
         fontSize: widget.textSize ?? 14.sp,
@@ -108,7 +107,8 @@ class _TextInputState extends State<TextInput> {
           hintText: widget.hintText ?? '',
           hintStyle: TextStyle(
               fontFamily: AppTextStyles.fontFamily,
-              color: AppColors.red,
+              color: widget.textColor ??
+                  Theme.of(context).textTheme.bodyLarge!.color,
               fontWeight: FontWeight.w500,
               fontSize: widget.hintTextSize ?? 14.h),
           labelText:

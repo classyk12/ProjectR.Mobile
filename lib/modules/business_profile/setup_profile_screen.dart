@@ -5,8 +5,6 @@ import 'package:get/utils.dart';
 import 'package:projectr/providers/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectr/routes/app_router.gr.dart';
-import 'package:projectr/shared/helpers/helper.dart';
 import 'package:projectr/shared/helpers/validator.dart';
 import 'package:projectr/shared/themes/app_colors.dart';
 import 'package:projectr/shared/themes/text_styles.dart';
@@ -14,18 +12,21 @@ import 'package:projectr/shared/widgets/button.dart';
 import 'package:projectr/shared/widgets/text_input.dart';
 
 @RoutePage()
-class AuthenticationScreen extends ConsumerStatefulWidget {
-  const AuthenticationScreen({super.key});
+class SetupBusinessProfileScreen extends ConsumerStatefulWidget {
+  const SetupBusinessProfileScreen({super.key});
 
   @override
-  ConsumerState<AuthenticationScreen> createState() =>
-      _AuthenticationScreenState();
+  ConsumerState<SetupBusinessProfileScreen> createState() =>
+      _SetupBusinessProfileScreenState();
 }
 
-class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
+class _SetupBusinessProfileScreenState
+    extends ConsumerState<SetupBusinessProfileScreen> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _businessName = TextEditingController();
   String _selectedPhoneCode = '';
   String _selectedCountry = '';
+
   @override
   void initState() {
     super.initState();
@@ -34,51 +35,36 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
   @override
   Widget build(BuildContext context) {
     final currentTheme = ref.watch(themeProvider).currentTheme;
-    final _phoneController = TextEditingController();
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: currentTheme.appBarTheme.foregroundColor,
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+          automaticallyImplyLeading: false, backgroundColor: AppColors.primary),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 80.h),
-              Center(
-                child: Image.asset(AppHelper.getImageFullPath('logo.png'),
-                    width: 100.w, height: 100.h),
-              ).paddingOnly(bottom: 40.h),
-              Button(
-                fontWeight: FontWeight.normal,
-                onPressed: () async {},
-                color: AppColors.transparent,
-                borderColor: Colors.grey,
-                text: ' Continue with Google',
-                textColor: currentTheme.textTheme.bodyLarge!.color!,
-                prefixicon:
-                    Image.asset(AppHelper.getImageFullPath('google.png')),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                      width: width * .3,
-                      height: .5.h,
-                      color: AppColors.lightGrey),
-                  const Text('Or', style: TextStyle(color: AppColors.lightGrey))
-                      .paddingSymmetric(horizontal: 20.w),
-                  Container(
-                      width: width * .38,
-                      height: .5.h,
-                      color: AppColors.lightGrey),
-                ],
-              ).paddingSymmetric(vertical: 10.h),
+              Container(
+                height: 50.h,
+                width: MediaQuery.sizeOf(context).width,
+                decoration: const BoxDecoration(
+                  color: AppColors.primary,
+                ),
+              ).paddingOnly(bottom: 40.h, top: 0),
+              Text(
+                'Business details',
+                style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w600,
+                    color: currentTheme.textTheme.bodyLarge!.color),
+              ).paddingOnly(bottom: 5.h),
               TextInput(
                 labelText: 'Enter your phone number',
-                controller: _phoneController,
+                controller: _businessName,
                 hintText: '',
                 prefixWidget: SizedBox(
                   width: width * .25,
@@ -102,10 +88,6 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                 validator: (value) => Validator.validatephone(value!),
                 focusNode: null,
                 onChanged: (val) {
-                  // setState(() {
-                  //   if (val == null || val.isEmpty) {}
-                  // });
-
                   return val;
                 },
                 keyboardType: TextInputType.phone,
@@ -113,21 +95,22 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                 isPassword: false,
                 textColor: Theme.of(context).textTheme.bodyLarge!.color,
               ).paddingOnly(bottom: 20.h),
+              Text(
+                'Label 1',
+                style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xff545555)),
+              ).paddingOnly(bottom: 20.h, top: 5.h),
               Button(
-                onPressed: () {
-                  _phoneController.text = _phoneController.text.trim();
-                  AutoRouter.of(context).push(OtpRoute(
-                    phoneNumber: _phoneController.text,
-                    phoneCode: _selectedPhoneCode,
-                  ));
-                },
+                onPressed: () {},
                 text: 'Continue',
                 color: AppColors.primary,
                 textColor: Colors.white,
                 fontWeight: FontWeight.bold,
               ).paddingOnly(bottom: 20.h),
             ],
-          ).paddingSymmetric(horizontal: 20.w, vertical: 10.h),
+          ).paddingSymmetric(vertical: 10.h),
         ),
       ),
     );
@@ -169,5 +152,10 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
         });
       },
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

@@ -5,8 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OTPInputField extends StatefulWidget {
   final TextEditingController controller;
+  final Color borderColor;
 
-  const OTPInputField({super.key, required this.controller});
+  const OTPInputField({
+    super.key,
+    this.borderColor = AppColors.primary,
+    required this.controller,
+  });
 
   @override
   State<OTPInputField> createState() => _OTPInputFieldState();
@@ -74,17 +79,13 @@ class _OTPInputFieldState extends State<OTPInputField> {
               counterText: '',
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: _controllers[index].text.isNotEmpty
-                      ? AppColors.primary
-                      : AppColors.primary,
+                  color: widget.borderColor,
                 ),
                 borderRadius: BorderRadius.circular(10.r),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                    color: _controllers[index].text.isNotEmpty
-                        ? AppColors.primary
-                        : AppColors.primary),
+                borderSide:
+                    const BorderSide(color: Color.fromARGB(255, 50, 69, 96)),
                 borderRadius: BorderRadius.circular(10.r),
               ),
             ),

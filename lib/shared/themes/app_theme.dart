@@ -10,11 +10,11 @@ class AppTheme {
         useMaterial3: true,
         brightness: Brightness.dark,
         fontFamily: AppTextStyles.fontFamily,
-        primaryColor: const Color(0xff659AC9),
+        primaryColor: Colors.white,
         buttonTheme: const ButtonThemeData(
             colorScheme: ColorScheme(
                 brightness: Brightness.dark,
-                primary: AppColors.primary, //Color(0xff9BC0FF),
+                primary: AppColors.primary,
                 onPrimary: AppColors.primary,
                 secondary: AppColors.secondary,
                 onSecondary: AppColors.secondary,
@@ -49,7 +49,7 @@ class AppTheme {
             statusBarBrightness: Brightness.dark, // Dark text for status bar
           ),
           elevation: 0,
-          backgroundColor: Color(0xff659AC9),
+          backgroundColor: AppColors.black,
           foregroundColor: AppColors.black,
           titleTextStyle: AppTextStyles.h2,
         ),
@@ -97,15 +97,15 @@ class AppTheme {
             tertiaryContainer: const Color(0xffEDEDFF).withBlue(500),
             inversePrimary: const Color(0xff8092B2)),
         scaffoldBackgroundColor: const Color(0xffE1E1E1),
-        appBarTheme: AppBarTheme(
-            systemOverlayStyle: const SystemUiOverlayStyle(
+        appBarTheme: const AppBarTheme(
+            systemOverlayStyle: SystemUiOverlayStyle(
               systemNavigationBarColor: AppColors.white,
               statusBarColor: AppColors.white, // Transparent status bar
               statusBarIconBrightness: Brightness.light,
               statusBarBrightness: Brightness.light, // Dark text for status bar
             ),
             elevation: 0,
-            backgroundColor: AppColors.primary.withOpacity(0.8),
+            backgroundColor: AppColors.white,
             foregroundColor: AppColors.white),
         bottomSheetTheme: const BottomSheetThemeData(
             backgroundColor: AppColors.white,
