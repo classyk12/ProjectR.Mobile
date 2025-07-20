@@ -103,6 +103,7 @@ class _TextInputState extends State<TextInput> {
           counterText: '',
           floatingLabelBehavior: widget.labelBehavior,
           fillColor: widget.color,
+          alignLabelWithHint: true,
           filled: true,
           hintText: widget.hintText ?? '',
           hintStyle: TextStyle(

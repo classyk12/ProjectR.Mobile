@@ -5,11 +5,12 @@ import 'package:get/utils.dart';
 import 'package:projectr/providers/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectr/routes/app_router.gr.dart';
 import 'package:projectr/shared/helpers/validator.dart';
 import 'package:projectr/shared/themes/app_colors.dart';
 import 'package:projectr/shared/themes/text_styles.dart';
 import 'package:projectr/shared/widgets/button.dart';
-import 'package:projectr/shared/widgets/text_input.dart';
+import 'package:projectr/shared/widgets/text_field_with_label_widget.dart';
 
 @RoutePage()
 class SetupBusinessProfileScreen extends ConsumerStatefulWidget {
@@ -40,77 +41,156 @@ class _SetupBusinessProfileScreenState
     return Scaffold(
       backgroundColor: currentTheme.appBarTheme.foregroundColor,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-          automaticallyImplyLeading: false, backgroundColor: AppColors.primary),
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: 50.h,
-                width: MediaQuery.sizeOf(context).width,
-                decoration: const BoxDecoration(
-                  color: AppColors.primary,
-                ),
-              ).paddingOnly(bottom: 40.h, top: 0),
-              Text(
-                'Business details',
-                style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w600,
-                    color: currentTheme.textTheme.bodyLarge!.color),
-              ).paddingOnly(bottom: 5.h),
-              TextInput(
-                labelText: 'Enter your phone number',
-                controller: _businessName,
-                hintText: '',
-                prefixWidget: SizedBox(
-                  width: width * .25,
-                  child: GestureDetector(
-                    onTap: () => _showCountryPicker(context),
-                    child: Row(
-                      children: [
-                        Text(_selectedPhoneCode).paddingOnly(left: 10.w),
-                        const RotatedBox(
-                                quarterTurns: 1,
-                                child: Icon(Icons.chevron_right, size: 20))
-                            .paddingOnly(right: 10.w),
-                        Container(
-                            width: 1, height: 50, color: AppColors.lightGrey),
-                      ],
-                    ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(50.h),
+          child: AppBar(
+              elevation: 0,
+              automaticallyImplyLeading: false,
+              backgroundColor: AppColors.primary)),
+      body: SafeArea(
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    width: MediaQuery.sizeOf(context).width,
+                    padding:
+                        EdgeInsets.only(left: 10.w, right: 10.w, bottom: 30.h),
+                    decoration: BoxDecoration(
+                        color: AppColors.primary,
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20.r),
+                            bottomRight: Radius.circular(20.r))),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Setup Business Profile',
+                              style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white)),
+                          Text(
+                              'Let\'s get your business ready to accept appointments',
+                              style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white)),
+                        ]),
                   ),
-                ),
-                borderColor: AppColors.lightGrey,
-                focusedBorderColor: AppColors.lightGrey,
-                validator: (value) => Validator.validatephone(value!),
-                focusNode: null,
-                onChanged: (val) {
-                  return val;
-                },
-                keyboardType: TextInputType.phone,
-                enabled: true,
-                isPassword: false,
-                textColor: Theme.of(context).textTheme.bodyLarge!.color,
-              ).paddingOnly(bottom: 20.h),
-              Text(
-                'Label 1',
-                style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    color: const Color(0xff545555)),
-              ).paddingOnly(bottom: 20.h, top: 5.h),
-              Button(
-                onPressed: () {},
-                text: 'Continue',
-                color: AppColors.primary,
-                textColor: Colors.white,
-                fontWeight: FontWeight.bold,
-              ).paddingOnly(bottom: 20.h),
-            ],
-          ).paddingSymmetric(vertical: 10.h),
+                ).paddingOnly(bottom: 40.h),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Business details',
+                          style: TextStyle(
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w600,
+                              color: currentTheme.textTheme.bodyLarge!.color),
+                        ).paddingOnly(bottom: 5.h),
+                        TextFieldWithLabelWidget(
+                            controller: _businessName,
+                            title: 'Business Name',
+                            labelText: 'Enter your business name',
+                            keyboardType: TextInputType.text,
+                            validator: (val) =>
+                                Validator.validateDropdown(val)),
+                        TextFieldWithLabelWidget(
+                            controller: TextEditingController(),
+                            title: 'Business Type',
+                            labelText: 'Select your business type',
+                            disabledBorderColor: AppColors.lightGrey,
+                            suffixWidget: const RotatedBox(
+                                quarterTurns: 3,
+                                child: Icon(
+                                  Icons.chevron_left,
+                                  size: 25,
+                                  color: AppColors.darkGrey,
+                                )),
+                            keyboardType: TextInputType.text,
+                            validator: (val) =>
+                                Validator.validateDropdown(val)),
+                        TextFieldWithLabelWidget(
+                            controller: TextEditingController(),
+                            title: 'Phone Number',
+                            disabledBorderColor: AppColors.lightGrey,
+                            labelText: 'Enter your phone number',
+                            prefixWidget: SizedBox(
+                              width: width * .25,
+                              child: GestureDetector(
+                                onTap: () => _showCountryPicker(context),
+                                child: Row(
+                                  children: [
+                                    Text(_selectedPhoneCode,
+                                        style: const TextStyle(
+                                          color: AppColors.darkGrey,
+                                        )).paddingOnly(left: 10.w),
+                                    const RotatedBox(
+                                        quarterTurns: 1,
+                                        child: Icon(
+                                          Icons.chevron_right,
+                                          size: 20,
+                                          color: AppColors.darkGrey,
+                                        )).paddingOnly(right: 10.w),
+                                    Container(
+                                        width: 1,
+                                        height: 30.h,
+                                        color: AppColors.lightGrey),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            keyboardType: TextInputType.text,
+                            validator: (val) =>
+                                Validator.validateDropdown(val)),
+                        TextFieldWithLabelWidget(
+                            controller: TextEditingController(),
+                            title: 'Industry',
+                            labelText: 'Select your industry',
+                            disabledBorderColor: AppColors.lightGrey,
+                            suffixWidget: const RotatedBox(
+                                quarterTurns: 3,
+                                child: Icon(
+                                  Icons.chevron_left,
+                                  size: 25,
+                                  color: AppColors.darkGrey,
+                                )),
+                            keyboardType: TextInputType.text,
+                            validator: (val) =>
+                                Validator.validateDropdown(val)),
+                        TextFieldWithLabelWidget(
+                            controller: TextEditingController(),
+                            title: 'About Business',
+                            maxLines: 5,
+                            labelText:
+                                'Tell us about your business, products or services you offer',
+                            disabledBorderColor: AppColors.lightGrey,
+                            enabled: true,
+                            keyboardType: TextInputType.text,
+                            validator: (val) => Validator.validateDefault(val)),
+                        Button(
+                          onPressed: () {
+                            AutoRouter.of(context)
+                                .push(const SetupBusinessLocationRoute());
+                          },
+                          text: 'Continue',
+                          color: AppColors.primary,
+                          textColor: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ).paddingSymmetric(vertical: 20.h),
+                      ],
+                    ).paddingSymmetric(horizontal: 10.w),
+                  ],
+                ).paddingSymmetric(vertical: 120.h),
+              ],
+            ),
+          ),
         ),
       ),
     );

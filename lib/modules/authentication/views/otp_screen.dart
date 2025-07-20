@@ -50,7 +50,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
         leading: InkWell(
           onTap: () {
             if (context.mounted) {
-              //  AutoRouter.of(context).
+              AutoRouter.of(context).back();
             }
           },
           child: Icon(Icons.chevron_left,
@@ -164,6 +164,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                     ),
               Button(
                 onPressed: () {
+                  _timer!.cancel();
                   AutoRouter.of(context)
                       .push(const SetupBusinessProfileRoute());
                 },

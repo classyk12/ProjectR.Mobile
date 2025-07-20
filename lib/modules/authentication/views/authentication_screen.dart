@@ -55,9 +55,10 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                 fontWeight: FontWeight.normal,
                 onPressed: () async {},
                 color: AppColors.transparent,
-                borderColor: Colors.grey,
+                borderColor: AppColors.lightGrey,
+                fontSize: 12.sp,
                 text: ' Continue with Google',
-                textColor: currentTheme.textTheme.bodyLarge!.color!,
+                textColor: AppColors.lightGrey,
                 prefixicon:
                     Image.asset(AppHelper.getImageFullPath('google.png')),
               ),
@@ -78,7 +79,10 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
               ).paddingSymmetric(vertical: 10.h),
               TextInput(
                 labelText: 'Enter your phone number',
+                labelBehavior: FloatingLabelBehavior.never,
+                labelFontSize: 12.sp,
                 controller: _phoneController,
+                labelTextColor: AppColors.lightGrey,
                 hintText: '',
                 prefixWidget: SizedBox(
                   width: width * .25,
@@ -86,10 +90,15 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                     onTap: () => _showCountryPicker(context),
                     child: Row(
                       children: [
-                        Text(_selectedPhoneCode).paddingOnly(left: 10.w),
+                        Text(_selectedPhoneCode,
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              color: AppColors.lightGrey,
+                            )).paddingOnly(left: 10.w),
                         const RotatedBox(
                                 quarterTurns: 1,
-                                child: Icon(Icons.chevron_right, size: 20))
+                                child: Icon(Icons.chevron_right,
+                                    size: 20, color: AppColors.darkGrey))
                             .paddingOnly(right: 10.w),
                         Container(
                             width: 1, height: 50, color: AppColors.lightGrey),
@@ -111,9 +120,9 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                 keyboardType: TextInputType.phone,
                 enabled: true,
                 isPassword: false,
-                textColor: Theme.of(context).textTheme.bodyLarge!.color,
+                textColor: AppColors.lightGrey,
               ).paddingOnly(bottom: 20.h),
-              Button(
+              Button( 
                 onPressed: () {
                   _phoneController.text = _phoneController.text.trim();
                   AutoRouter.of(context).push(OtpRoute(
