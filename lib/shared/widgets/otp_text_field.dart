@@ -6,10 +6,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class OTPInputField extends StatefulWidget {
   final TextEditingController controller;
   final Color borderColor;
+  final bool obscureText;
 
   const OTPInputField({
     super.key,
     this.borderColor = AppColors.primary,
+    this.obscureText = true,
     required this.controller,
   });
 
@@ -73,7 +75,7 @@ class _OTPInputFieldState extends State<OTPInputField> {
               LengthLimitingTextInputFormatter(1),
               FilteringTextInputFormatter.digitsOnly
             ],
-            obscureText: true,
+            obscureText: widget.obscureText,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(vertical: 10.h),
               counterText: '',

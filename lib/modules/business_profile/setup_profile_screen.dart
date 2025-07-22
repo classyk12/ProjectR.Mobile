@@ -58,9 +58,9 @@ class _SetupBusinessProfileScreenState
                   child: Container(
                     width: MediaQuery.sizeOf(context).width,
                     padding:
-                        EdgeInsets.only(left: 10.w, right: 10.w, bottom: 30.h),
+                        EdgeInsets.only(left: 20.w, right: 10.w, bottom: 30.h),
                     decoration: BoxDecoration(
-                        color: AppColors.primary,
+                        color: currentTheme.primaryColor,
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(20.r),
                             bottomRight: Radius.circular(20.r))),

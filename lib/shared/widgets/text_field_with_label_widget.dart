@@ -7,6 +7,7 @@ import 'package:get/utils.dart';
 
 class TextFieldWithLabelWidget extends StatelessWidget {
   final String title;
+  final Color? titleColor;
   final String labelText;
   final Widget? prefixWidget;
   final Widget? suffixWidget;
@@ -22,6 +23,7 @@ class TextFieldWithLabelWidget extends StatelessWidget {
       required this.labelText,
       required this.keyboardType,
       required this.controller,
+      this.titleColor,
       this.validator,
       this.maxLines,
       this.suffixWidget,
@@ -33,6 +35,7 @@ class TextFieldWithLabelWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return _dataField(context,
         title: title,
+        titleColor: titleColor ?? AppColors.primary,
         labelText: labelText,
         prefixWidget: prefixWidget,
         enabled: enabled!,
@@ -51,6 +54,7 @@ Widget _dataField(
   required String labelText,
   required TextInputType keyboardType,
   required TextEditingController controller,
+  Color? titleColor,
   Widget? prefixWidget,
   Widget? suffixWidget,
   int? maxLines,
@@ -68,7 +72,7 @@ Widget _dataField(
                     style: TextStyle(
                         fontFamily: AppTextStyles.fontFamily,
                         fontSize: 10.sp,
-                        color: AppColors.darkGrey))
+                        color: Theme.of(context).textTheme.bodyLarge!.color))
                 .paddingSymmetric(vertical: 10.h),
             Text('*',
                     style: TextStyle(
@@ -76,7 +80,7 @@ Widget _dataField(
                         fontSize: 10.sp,
                         color: validator == null
                             ? AppColors.transparent
-                            : AppColors.darkGrey))
+                            : Theme.of(context).textTheme.bodyLarge!.color))
                 .paddingSymmetric(vertical: 10.h),
           ],
         ),
@@ -88,18 +92,18 @@ Widget _dataField(
             hintTextSize: 10.sp,
             labelTextAlign: Alignment.topLeft,
             hintText: labelText,
-            borderColor: AppColors.darkGrey,
+            borderColor: Theme.of(context).textTheme.bodyLarge!.color,
             validator: validator,
             labelBehavior: FloatingLabelBehavior.never,
             focusNode: null,
             prefixWidget: prefixWidget,
-            focusedBorderColor: AppColors.darkGrey,
+            focusedBorderColor: Theme.of(context).textTheme.bodyLarge!.color,
             maxLines: maxLines ?? 1,
             controller: controller,
             disabledBorderColor: disabledBorderColor,
             keyboardType: keyboardType,
             suffixWidget: suffixWidget,
             isPassword: false,
-            textColor: AppColors.darkGrey)
+            textColor: Theme.of(context).textTheme.bodyLarge!.color)
       ]).paddingSymmetric(vertical: 5.h);
 }

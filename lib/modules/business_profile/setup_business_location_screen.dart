@@ -4,6 +4,7 @@ import 'package:get/utils.dart';
 import 'package:projectr/providers/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectr/routes/app_router.gr.dart';
 import 'package:projectr/shared/helpers/validator.dart';
 import 'package:projectr/shared/themes/app_colors.dart';
 import 'package:projectr/shared/widgets/button.dart';
@@ -55,7 +56,7 @@ class _SetupBusinessLocationScreenState
                   child: Container(
                     width: MediaQuery.sizeOf(context).width,
                     padding:
-                        EdgeInsets.only(left: 10.w, right: 10.w, bottom: 30.h),
+                        EdgeInsets.only(left: 20.w, right: 10.w, bottom: 30.h),
                     decoration: BoxDecoration(
                         color: AppColors.primary,
                         borderRadius: BorderRadius.only(
@@ -143,7 +144,10 @@ class _SetupBusinessLocationScreenState
                               fontWeight: FontWeight.bold,
                             ).paddingSymmetric(vertical: 20.h),
                             Button(
-                              onPressed: () {},
+                              onPressed: () {
+                                AutoRouter.of(context)
+                                    .push(const SetupBusinessDetailRoute());
+                              },
                               text: 'Continue',
                               width: width * .45,
                               color: AppColors.primary,

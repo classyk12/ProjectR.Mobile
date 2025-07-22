@@ -14,7 +14,7 @@ class AppTheme {
         buttonTheme: const ButtonThemeData(
             colorScheme: ColorScheme(
                 brightness: Brightness.dark,
-                primary: AppColors.primary,
+                primary: AppColors.black,
                 onPrimary: AppColors.primary,
                 secondary: AppColors.secondary,
                 onSecondary: AppColors.secondary,
@@ -66,13 +66,13 @@ class AppTheme {
         fontFamily: AppTextStyles.fontFamily,
         primaryColor: AppColors.primary,
         iconTheme: const IconThemeData(color: AppColors.black),
-        textTheme: TextThemes.primaryTextTheme,
         buttonTheme: const ButtonThemeData(
+            textTheme: ButtonTextTheme.normal,
             colorScheme: ColorScheme(
                 brightness: Brightness.light,
-                primary: AppColors.primary,
-                onPrimary: AppColors.secondary,
-                secondary: AppColors.secondary,
+                primary: AppColors.white,
+                onPrimary: AppColors.primary,
+                secondary: AppColors.white,
                 onSecondary: AppColors.secondary,
                 error: AppColors.red,
                 onError: AppColors.red,

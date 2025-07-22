@@ -49,16 +49,18 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
               SizedBox(height: 80.h),
               Center(
                 child: Image.asset(AppHelper.getImageFullPath('logo.png'),
-                    width: 100.w, height: 100.h),
+                    color: currentTheme.primaryColor,
+                    width: 100.w,
+                    height: 100.h),
               ).paddingOnly(bottom: 40.h),
               Button(
                 fontWeight: FontWeight.normal,
                 onPressed: () async {},
                 color: AppColors.transparent,
-                borderColor: AppColors.lightGrey,
+                borderColor: currentTheme.textTheme.bodyLarge!.color,
                 fontSize: 12.sp,
                 text: ' Continue with Google',
-                textColor: AppColors.lightGrey,
+                textColor: currentTheme.textTheme.bodyLarge!.color,
                 prefixicon:
                     Image.asset(AppHelper.getImageFullPath('google.png')),
               ),
@@ -82,7 +84,7 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                 labelBehavior: FloatingLabelBehavior.never,
                 labelFontSize: 12.sp,
                 controller: _phoneController,
-                labelTextColor: AppColors.lightGrey,
+                labelTextColor: currentTheme.textTheme.bodyLarge!.color,
                 hintText: '',
                 prefixWidget: SizedBox(
                   width: width * .25,
@@ -93,12 +95,14 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                         Text(_selectedPhoneCode,
                             style: TextStyle(
                               fontSize: 12.sp,
-                              color: AppColors.lightGrey,
+                              color: currentTheme.textTheme.bodyLarge!.color,
                             )).paddingOnly(left: 10.w),
-                        const RotatedBox(
+                        RotatedBox(
                                 quarterTurns: 1,
                                 child: Icon(Icons.chevron_right,
-                                    size: 20, color: AppColors.darkGrey))
+                                    size: 20,
+                                    color: currentTheme
+                                        .textTheme.bodyLarge!.color))
                             .paddingOnly(right: 10.w),
                         Container(
                             width: 1, height: 50, color: AppColors.lightGrey),
@@ -106,8 +110,8 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                     ),
                   ),
                 ),
-                borderColor: AppColors.lightGrey,
-                focusedBorderColor: AppColors.lightGrey,
+                borderColor: currentTheme.textTheme.bodyLarge!.color,
+                focusedBorderColor: currentTheme.textTheme.bodyLarge!.color,
                 validator: (value) => Validator.validatephone(value!),
                 focusNode: null,
                 onChanged: (val) {
@@ -120,9 +124,9 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                 keyboardType: TextInputType.phone,
                 enabled: true,
                 isPassword: false,
-                textColor: AppColors.lightGrey,
-              ).paddingOnly(bottom: 20.h),
-              Button( 
+                textColor: currentTheme.textTheme.bodyLarge!.color,
+              ).paddingOnly(bottom: 50.h),
+              Button(
                 onPressed: () {
                   _phoneController.text = _phoneController.text.trim();
                   AutoRouter.of(context).push(OtpRoute(

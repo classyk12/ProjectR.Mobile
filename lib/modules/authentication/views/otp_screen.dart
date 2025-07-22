@@ -80,19 +80,19 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                   style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w400,
-                      color: AppColors.darkGrey),
-                  children: const <TextSpan>[
+                      color: currentTheme.textTheme.bodyLarge!.color),
+                  children: <TextSpan>[
                     TextSpan(
                         text: ' OTP ',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: AppColors.darkGrey)),
+                            color: currentTheme.textTheme.bodyLarge!.color)),
                     TextSpan(
                         text: 'sent to',
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
                             height: 2,
-                            color: AppColors.darkGrey)),
+                            color: currentTheme.textTheme.bodyLarge!.color)),
                   ],
                 ),
               ),
@@ -101,18 +101,19 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                 style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
-                    color: const Color(0xff545555)),
+                    color: currentTheme.textTheme.bodyLarge!.color),
               ).paddingOnly(bottom: 20.h, top: 5.h),
               Text(
                 'OTP Code',
                 style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
-                    color: const Color(0xff545555)),
-              ).paddingOnly(bottom: 5.h),
+                    color: currentTheme.textTheme.bodyLarge!.color),
+              ).paddingOnly(bottom: 10.h),
               OTPInputField(
+                obscureText: false,
                 controller: _otpController,
-                borderColor: AppColors.darkGrey,
+                borderColor: currentTheme.textTheme.bodyLarge!.color!,
               ),
               _isTimerRunning
                   ? RichText(
@@ -121,20 +122,22 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                         style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w400,
-                            color: AppColors.darkGrey),
+                            color: currentTheme.textTheme.bodyLarge!.color),
                         children: <TextSpan>[
-                          const TextSpan(
+                          TextSpan(
                               text: 'resend in ',
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   height: 2,
-                                  color: AppColors.darkGrey)),
+                                  color:
+                                      currentTheme.textTheme.bodyLarge!.color)),
                           TextSpan(
                               text: getTimeLeft(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   height: 2,
-                                  color: AppColors.darkGrey)),
+                                  color:
+                                      currentTheme.textTheme.bodyLarge!.color)),
                         ],
                       ),
                     ).paddingOnly(bottom: 20.h, top: 5.h)
@@ -157,7 +160,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     height: 2,
-                                    color: currentTheme.primaryColor)),
+                                    color: currentTheme.primaryColorDark)),
                           ],
                         ),
                       ).paddingOnly(bottom: 20.h, top: 5.h),
@@ -170,7 +173,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                 },
                 text: 'Continue',
                 color: AppColors.primary,
-                textColor: Colors.white,
+                textColor: currentTheme.buttonTheme.colorScheme!.primary,
                 fontWeight: FontWeight.bold,
               ).paddingOnly(bottom: 20.h),
             ],
