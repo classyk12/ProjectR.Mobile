@@ -13,11 +13,11 @@ import 'package:flutter/material.dart' as _i9;
 import 'package:projectr/modules/authentication/views/authentication_screen.dart'
     as _i1;
 import 'package:projectr/modules/authentication/views/otp_screen.dart' as _i3;
-import 'package:projectr/modules/business_profile/setup_business_detail_screen.dart'
+import 'package:projectr/modules/business_profile/views/setup_business_detail_screen.dart'
     as _i4;
-import 'package:projectr/modules/business_profile/setup_business_location_screen.dart'
+import 'package:projectr/modules/business_profile/views/setup_business_location_screen.dart'
     as _i5;
-import 'package:projectr/modules/business_profile/setup_profile_screen.dart'
+import 'package:projectr/modules/business_profile/views/setup_profile_screen.dart'
     as _i6;
 import 'package:projectr/onboarding_screen.dart' as _i2;
 import 'package:projectr/splash_screen.dart' as _i7;

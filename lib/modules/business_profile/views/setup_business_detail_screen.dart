@@ -60,7 +60,7 @@ class _SetupBusinessDetailScreenState
                           fontSize: 12.sp,
                           fontWeight: FontWeight.normal,
                           color: currentTheme.textTheme.bodyLarge!.color))
-                  .paddingOnly(bottom: 20.h, left: 15.w),
+                  .paddingOnly(bottom: 20.h, left: 15.w, right: 15.w),
               Container(
                 width: width,
                 padding: const EdgeInsets.all(15),
