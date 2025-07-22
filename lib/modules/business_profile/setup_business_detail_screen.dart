@@ -5,10 +5,8 @@ import 'package:projectr/providers/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectr/shared/helpers/helper.dart';
-import 'package:projectr/shared/helpers/validator.dart';
 import 'package:projectr/shared/themes/app_colors.dart';
 import 'package:projectr/shared/widgets/button.dart';
-import 'package:projectr/shared/widgets/text_field_with_label_widget.dart';
 
 @RoutePage()
 class SetupBusinessDetailScreen extends ConsumerStatefulWidget {
@@ -22,9 +20,7 @@ class SetupBusinessDetailScreen extends ConsumerStatefulWidget {
 class _SetupBusinessDetailScreenState
     extends ConsumerState<SetupBusinessDetailScreen> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _businessName = TextEditingController();
-  String _selectedPhoneCode = '';
-  String _selectedCountry = '';
+  late ThemeData currentTheme;
 
   @override
   void initState() {
@@ -33,7 +29,7 @@ class _SetupBusinessDetailScreenState
 
   @override
   Widget build(BuildContext context) {
-    final currentTheme = ref.watch(themeProvider).currentTheme;
+    currentTheme = ref.watch(themeProvider).currentTheme;
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -58,14 +54,39 @@ class _SetupBusinessDetailScreenState
                       color: currentTheme.textTheme.bodyLarge!.color),
                 ).paddingOnly(bottom: 5.h),
               ),
-              Text('You\'ve successfully set up your business profile. Now you can start accepting appointments',
+              Text('You\'ve successfully set up your business profile.\nNow you can start accepting appointments',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.normal,
                           color: currentTheme.textTheme.bodyLarge!.color))
-                  .paddingOnly(bottom: 10.h),
+                  .paddingOnly(bottom: 20.h, left: 15.w),
               Container(
-                child: Column(children: []),
+                width: width,
+                padding: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.r),
+                    border: Border.all(
+                        color: currentTheme.primaryColor.withOpacity(0.5))),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _detailItem(
+                          title: 'Business Name',
+                          detail: 'Swaggs and More Gift Collection'),
+                      _detailItem(
+                          title: 'Business Location', detail: 'Abuja, Nigeria'),
+                      _detailItem(
+                          title: 'Phone Number', detail: '+158087366373'),
+                      _detailItem(
+                          title: 'Business Type',
+                          detail: 'Sole Proprietorship'),
+                      _detailItem(title: 'Industry', detail: 'E-Commerce'),
+                      _detailItem(
+                          title: 'About',
+                          detail:
+                              'We curate and sell at types of gifts for all types of occassions'),
+                    ]),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -98,11 +119,28 @@ class _SetupBusinessDetailScreenState
               ),
             ],
           )
-              .paddingSymmetric(horizontal: 10.w)
+              .paddingSymmetric(horizontal: 15.w)
               .paddingSymmetric(vertical: 120.h),
         ),
       ),
     );
+  }
+
+  Widget _detailItem({required String title, required String detail}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: TextStyle(color: AppColors.lightGrey, fontSize: 12.sp),
+        ),
+        Text(
+          detail,
+          style: TextStyle(
+              color: currentTheme.textTheme.bodyLarge!.color, fontSize: 16.sp),
+        ),
+      ],
+    ).paddingSymmetric(vertical: 15.h);
   }
 
   @override
