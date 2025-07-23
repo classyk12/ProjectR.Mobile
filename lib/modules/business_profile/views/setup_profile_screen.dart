@@ -187,7 +187,7 @@ class _SetupBusinessProfileScreenState
                       ],
                     ).paddingSymmetric(horizontal: 10.w),
                   ],
-                ).paddingSymmetric(vertical: 120.h),
+                ).paddingSymmetric(vertical: 50.h),
               ],
             ),
           ),

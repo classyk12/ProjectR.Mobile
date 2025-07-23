@@ -4,6 +4,7 @@ import 'package:get/utils.dart';
 import 'package:projectr/providers/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectr/routes/app_router.gr.dart';
 import 'package:projectr/shared/helpers/helper.dart';
 import 'package:projectr/shared/themes/app_colors.dart';
 import 'package:projectr/shared/widgets/button.dart';
@@ -44,7 +45,7 @@ class _SetupBusinessDetailScreenState
               Center(
                 child: Image.asset(AppHelper.getImageFullPath('success.png'),
                     width: 80.w, height: 80.h),
-              ).paddingOnly(bottom: 20.h),
+              ).paddingOnly(bottom: 20.h, top: 30.h),
               Center(
                 child: Text(
                   'Your business profile is ready!',
@@ -54,13 +55,16 @@ class _SetupBusinessDetailScreenState
                       color: currentTheme.textTheme.bodyLarge!.color),
                 ).paddingOnly(bottom: 5.h),
               ),
-              Text('You\'ve successfully set up your business profile.\nNow you can start accepting appointments',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.normal,
-                          color: currentTheme.textTheme.bodyLarge!.color))
-                  .paddingOnly(bottom: 20.h, left: 15.w, right: 15.w),
+              Center(
+                child: Text(
+                        'You\'ve successfully set up your business profile.\nNow you can start accepting appointments',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.normal,
+                            color: currentTheme.textTheme.bodyLarge!.color))
+                    .paddingOnly(bottom: 20.h),
+              ),
               Container(
                 width: width,
                 padding: const EdgeInsets.all(15),
@@ -108,7 +112,10 @@ class _SetupBusinessDetailScreenState
                     fontWeight: FontWeight.bold,
                   ).paddingSymmetric(vertical: 20.h),
                   Button(
-                    onPressed: () {},
+                    onPressed: () {
+                      AutoRouter.of(context)
+                          .popAndPush(const SetupAvailabilityRoute());
+                    },
                     text: 'Finish',
                     width: width * .45,
                     color: AppColors.primary,
@@ -118,9 +125,7 @@ class _SetupBusinessDetailScreenState
                 ],
               ),
             ],
-          )
-              .paddingSymmetric(horizontal: 15.w)
-              .paddingSymmetric(vertical: 120.h),
+          ).paddingSymmetric(horizontal: 15.w).paddingSymmetric(vertical: 50.h),
         ),
       ),
     );

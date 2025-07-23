@@ -23,8 +23,6 @@ class _SetupBusinessLocationScreenState
     extends ConsumerState<SetupBusinessLocationScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _businessName = TextEditingController();
-  String _selectedPhoneCode = '';
-  String _selectedCountry = '';
 
   @override
   void initState() {
