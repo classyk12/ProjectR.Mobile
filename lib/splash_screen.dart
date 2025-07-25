@@ -52,7 +52,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
               fit: BoxFit.cover,
               image: AssetImage(
                 AppHelper.getImageFullPath(
-                  'splash.jpeg',
+                  'splash.jpg',
                 ),
               ))),
       height: MediaQuery.sizeOf(context).height,
@@ -66,12 +66,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
             ),
             width: 89.w,
             height: 75.h,
-            color: Colors.white,
+            color: AppColors.white,
           ),
+          SizedBox(height: 10.h),
           Text('ProjectR',
               style: TextStyle(
-                  color: AppColors.black,
-                  fontSize: 20.sp,
+                  color: AppColors.white,
+                  fontSize: 28.sp,
                   fontWeight: FontWeight.w600)),
         ],
       ),

@@ -70,7 +70,7 @@ class _SetupAvailabilityScreenState
               Button(
                 onPressed: () {
                   AutoRouter.of(context)
-                      .push(const SetupBusinessLocationRoute());
+                      .push(const SetupBusinessCompletionRoute());
                 },
                 text: 'Save Availability',
                 color: AppColors.primary,
@@ -179,7 +179,7 @@ class _SetupAvailabilityScreenState
     );
   }
 
-  SizedBox _startTimeView(
+  Widget _startTimeView(
       double width, BuildContext context, ThemeData currentTheme) {
     return SizedBox(
       width: width * .40,

@@ -31,6 +31,7 @@ class AppTheme {
             surface: AppColors.black,
             //this color represents success/greens for the theme
             tertiary: AppColors.green,
+            onSurface: AppColors.black,
             //scaffold background Dashboard
             primaryContainer: Color(0xff161616),
             onPrimaryContainer: Color(0xff002564),
@@ -66,6 +67,7 @@ class AppTheme {
         fontFamily: AppTextStyles.fontFamily,
         primaryColor: AppColors.primary,
         iconTheme: const IconThemeData(color: AppColors.black),
+        textTheme: TextThemes.primaryTextTheme,
         buttonTheme: const ButtonThemeData(
             textTheme: ButtonTextTheme.normal,
             colorScheme: ColorScheme(
@@ -77,14 +79,14 @@ class AppTheme {
                 error: AppColors.red,
                 onError: AppColors.red,
                 surface: AppColors.primary,
-                onSurface: AppColors.primary)),
+                onSurface: AppColors.white)),
         colorScheme: ColorScheme.light(
             brightness: Brightness.light,
             primary: AppColors.primary,
             surface: AppColors.white,
             secondaryContainer: const Color(0xffF3F3FE),
             error: AppColors.red,
-
+            onSurface: AppColors.white,
             //this color represents success/greens for the theme
             tertiary: const Color(0xffDFF8EF),
 

@@ -16,7 +16,8 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: SetupBusinessProfileRoute.page),
         AutoRoute(page: SetupBusinessLocationRoute.page),
         AutoRoute(page: SetupBusinessDetailRoute.page),
-        AutoRoute(page: SetupAvailabilityRoute.page)
+        AutoRoute(page: SetupAvailabilityRoute.page),
+        AutoRoute(page: SetupBusinessCompletionRoute.page)
       ];
 
   @override
