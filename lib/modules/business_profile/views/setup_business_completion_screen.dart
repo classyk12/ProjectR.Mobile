@@ -69,8 +69,7 @@ class _SetupBusinessCompletionScreenState
             ).paddingOnly(bottom: 5.h),
             Button(
               onPressed: () {
-                AutoRouter.of(context)
-                    .popAndPush(const SetupAvailabilityRoute());
+                AutoRouter.of(context).popAndPush(const HomeRoute());
               },
               text: 'Lets Get Started!',
               color: AppColors.primary,
