@@ -1,16 +1,20 @@
 
-```markdown
-# 📱 ProjectR Mobile App
+# ProjectR 📅 — Smart Scheduling & Appointment Management
 
-**ProjectR** is a mobile-first application designed to simplify appointment scheduling, team coordination, and resource management. This repository contains the cross-platform **Flutter** codebase for the ProjectR mobile client.
+**ProjectR** is an open-source mobile & web solution that helps **small and medium businesses** handle, track, and optimize appointments — with modern scheduling, real-time notifications, and a vision for AI-powered smart booking.
+
+**Link to Design:**  https://www.figma.com/design/MVeaUyF5dKVPqE2ngOj4yu/Project-R?node-id=427-9226&t=VvlOFmwMdmMVJyaG-0
 
 ---
 
-## 🚀 Features
+## 📌 Features
 
 - 📆 Schedule and manage appointments
 - 🔔 Real-time notifications
+- 💬 In-app messaging (coming soon)
+- 🔐 One Tap Customer Scheduling
 - ☁️ Offline support with local storage
+
 ---
 
 ## 🧱 Tech Stack
@@ -21,7 +25,7 @@
 - **Local Storage:** SharedPreferences
 - **Networking:** Dio
 - **CI/CD:** GitHub Actions (coming soon)
-- **Backend API:** C# .NET 8 (see `projectR.backend`)
+- **Backend API:** C# .NET 8 (https://github.com/classyk12/ProjectR.Backend)
 
 ---
 
