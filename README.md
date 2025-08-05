@@ -135,8 +135,8 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 👨‍💻 Maintainers
 
-* Faith Sodipe – Lead Developer
-* https://classykdigital.com
+Faith Sodipe – Lead Developer
+https://classykdigital.com
 
 ---
 
