@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectr/shared/helpers/helper.dart';
 import 'package:projectr/shared/themes/app_colors.dart';
 import 'package:projectr/shared/widgets/bottom_nav_widget.dart';
+import 'package:projectr/shared/widgets/bottom_sheet_widget.dart';
 import 'package:projectr/shared/widgets/button.dart';
 
 @RoutePage()
@@ -242,27 +243,67 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         fontWeight: FontWeight.normal,
                         color: currentTheme.textTheme.bodyLarge!.color)),
                 const Expanded(child: SizedBox()),
-                _appointmentActionMenu(context),
+                _appointmentActionMenu(context, currentTheme),
               ]).paddingSymmetric(vertical: 10.h),
             ]).paddingAll(15)
       ]),
     ).paddingSymmetric(vertical: 15.h);
   }
 
-  Widget _appointmentActionMenu(BuildContext context) {
+  Widget _appointmentActionMenu(BuildContext context, ThemeData currentTheme) {
     return PopupMenuButton(
         constraints: BoxConstraints(
-          minWidth: MediaQuery.of(context).size.width,
+          minWidth: width * .18,
         ),
-        position: PopupMenuPosition.under,
-        splashRadius: 0,
+        position: PopupMenuPosition.over,
+        splashRadius: 1,
         itemBuilder: (context) {
           return List.generate(_appointmentActions.length, (index) {
             return PopupMenuItem(
-              onTap: () {},
-              child: Text(_genders[index],
-                  style: Theme.of(context).textTheme.bodyMedium),
-            );
+                onTap: () {
+                  if(index == 0){
+                    modalBottomSheet(
+                      context,
+                      Container(),
+                      icon: CircleAvatar(
+                          radius: 30,
+                          backgroundColor:
+                              currentTheme.primaryColor.withOpacity(0.1),
+                          child: Icon(
+                            Icons.person,
+                            color: currentTheme.primaryColor,
+                            size: 40,
+                          )).paddingOnly(bottom: 20.h),
+                      title: 'Select ID Type',
+                      isScrollControlled: true,
+                      height: MediaQuery.of(context).size.height * .5,
+                      isDismissible: true,
+                    );
+                  }
+                  else if(index == 1){
+
+                  }
+                  else{
+
+                  }
+                },
+                child: Row(children: [
+                  Image.asset(
+                      AppHelper.getImageFullPath(index == 0
+                          ? 'calendar_clock.png'
+                          : index == 1
+                              ? 'reminder.png'
+                              : 'cancel.png'),
+                      color: currentTheme.colorScheme.primary,
+                      width: 20.w,
+                      height: 20.h),
+                  Text(_appointmentActions[index],
+                          style: TextStyle(
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w400,
+                              color: currentTheme.textTheme.bodyLarge!.color))
+                      .paddingOnly(left: 10.w),
+                ]).paddingSymmetric(horizontal: 10.w));
           });
         },
         child: const RotatedBox(
