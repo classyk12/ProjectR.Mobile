@@ -10,11 +10,11 @@ class AppTheme {
         useMaterial3: true,
         brightness: Brightness.dark,
         fontFamily: AppTextStyles.fontFamily,
-        primaryColor: const Color(0xff659AC9),
+        primaryColor: Colors.white,
         buttonTheme: const ButtonThemeData(
             colorScheme: ColorScheme(
                 brightness: Brightness.dark,
-                primary: AppColors.primary, //Color(0xff9BC0FF),
+                primary: AppColors.black,
                 onPrimary: AppColors.primary,
                 secondary: AppColors.secondary,
                 onSecondary: AppColors.secondary,
@@ -31,6 +31,7 @@ class AppTheme {
             surface: AppColors.black,
             //this color represents success/greens for the theme
             tertiary: AppColors.green,
+            onSurface: AppColors.black,
             //scaffold background Dashboard
             primaryContainer: Color(0xff161616),
             onPrimaryContainer: Color(0xff002564),
@@ -49,7 +50,7 @@ class AppTheme {
             statusBarBrightness: Brightness.dark, // Dark text for status bar
           ),
           elevation: 0,
-          backgroundColor: Color(0xff659AC9),
+          backgroundColor: AppColors.black,
           foregroundColor: AppColors.black,
           titleTextStyle: AppTextStyles.h2,
         ),
@@ -68,23 +69,24 @@ class AppTheme {
         iconTheme: const IconThemeData(color: AppColors.black),
         textTheme: TextThemes.primaryTextTheme,
         buttonTheme: const ButtonThemeData(
+            textTheme: ButtonTextTheme.normal,
             colorScheme: ColorScheme(
                 brightness: Brightness.light,
-                primary: AppColors.primary,
-                onPrimary: AppColors.secondary,
-                secondary: AppColors.secondary,
+                primary: AppColors.white,
+                onPrimary: AppColors.primary,
+                secondary: AppColors.white,
                 onSecondary: AppColors.secondary,
                 error: AppColors.red,
                 onError: AppColors.red,
                 surface: AppColors.primary,
-                onSurface: AppColors.primary)),
+                onSurface: AppColors.white)),
         colorScheme: ColorScheme.light(
             brightness: Brightness.light,
             primary: AppColors.primary,
             surface: AppColors.white,
             secondaryContainer: const Color(0xffF3F3FE),
             error: AppColors.red,
-
+            onSurface: AppColors.white,
             //this color represents success/greens for the theme
             tertiary: const Color(0xffDFF8EF),
 
@@ -97,15 +99,15 @@ class AppTheme {
             tertiaryContainer: const Color(0xffEDEDFF).withBlue(500),
             inversePrimary: const Color(0xff8092B2)),
         scaffoldBackgroundColor: const Color(0xffE1E1E1),
-        appBarTheme: AppBarTheme(
-            systemOverlayStyle: const SystemUiOverlayStyle(
+        appBarTheme: const AppBarTheme(
+            systemOverlayStyle: SystemUiOverlayStyle(
               systemNavigationBarColor: AppColors.white,
               statusBarColor: AppColors.white, // Transparent status bar
               statusBarIconBrightness: Brightness.light,
               statusBarBrightness: Brightness.light, // Dark text for status bar
             ),
             elevation: 0,
-            backgroundColor: AppColors.primary.withOpacity(0.8),
+            backgroundColor: AppColors.white,
             foregroundColor: AppColors.white),
         bottomSheetTheme: const BottomSheetThemeData(
             backgroundColor: AppColors.white,

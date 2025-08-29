@@ -14,6 +14,7 @@ class Button extends StatelessWidget {
   final Widget? prefixicon;
   final Widget? suffixicon;
   final String? text;
+  final double? fontSize;
   final Color? borderColor;
   final FontWeight? fontWeight;
 
@@ -27,6 +28,7 @@ class Button extends StatelessWidget {
       this.textColor,
       this.prefixicon,
       this.suffixicon,
+      this.fontSize,
       this.text,
       this.borderColor = AppColors.transparent,
       this.fontWeight = FontWeight.normal,
@@ -52,7 +54,7 @@ class Button extends StatelessWidget {
                 child: Text(text ?? '',
                     style: TextStyle(
                         decoration: TextDecoration.none,
-                        fontSize: 14.sp,
+                        fontSize: fontSize ?? 14.sp,
                         fontFamily: AppTextStyles.fontFamily,
                         fontStyle: FontStyle.normal,
                         fontWeight: fontWeight,

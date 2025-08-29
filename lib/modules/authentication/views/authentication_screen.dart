@@ -5,17 +5,17 @@ import 'package:get/utils.dart';
 import 'package:projectr/providers/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectr/routes/app_router.gr.dart';
 import 'package:projectr/shared/helpers/helper.dart';
 import 'package:projectr/shared/helpers/validator.dart';
 import 'package:projectr/shared/themes/app_colors.dart';
 import 'package:projectr/shared/themes/text_styles.dart';
 import 'package:projectr/shared/widgets/button.dart';
-import 'package:projectr/shared/widgets/text_field_with_label_widget.dart';
+import 'package:projectr/shared/widgets/text_input.dart';
 
 @RoutePage()
 class AuthenticationScreen extends ConsumerStatefulWidget {
-  final bool isLogin;
-  const AuthenticationScreen({super.key, required this.isLogin});
+  const AuthenticationScreen({super.key});
 
   @override
   ConsumerState<AuthenticationScreen> createState() =>
@@ -24,20 +24,18 @@ class AuthenticationScreen extends ConsumerStatefulWidget {
 
 class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
   final _formKey = GlobalKey<FormState>();
-  bool isLogin = false;
   String _selectedPhoneCode = '';
   String _selectedCountry = '';
   @override
   void initState() {
-    isLogin = widget.isLogin;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     final currentTheme = ref.watch(themeProvider).currentTheme;
+    final _phoneController = TextEditingController();
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: currentTheme.appBarTheme.foregroundColor,
@@ -51,18 +49,18 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
               SizedBox(height: 80.h),
               Center(
                 child: Image.asset(AppHelper.getImageFullPath('logo.png'),
-                    width: 100.w, height: 100.h),
-              ),
-              Text(isLogin ? 'Welcome Back!' : 'Create Account',
-                  style: TextStyle(
-                      color: currentTheme.textTheme.bodyLarge!.color!)),
+                    color: currentTheme.primaryColor,
+                    width: 100.w,
+                    height: 100.h),
+              ).paddingOnly(bottom: 40.h),
               Button(
                 fontWeight: FontWeight.normal,
                 onPressed: () async {},
                 color: AppColors.transparent,
-                borderColor: Colors.grey,
+                borderColor: currentTheme.textTheme.bodyLarge!.color,
+                fontSize: 12.sp,
                 text: ' Continue with Google',
-                textColor: currentTheme.textTheme.bodyLarge!.color!,
+                textColor: currentTheme.textTheme.bodyLarge!.color,
                 prefixicon:
                     Image.asset(AppHelper.getImageFullPath('google.png')),
               ),
@@ -70,58 +68,79 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                      width: width * .4,
+                      width: width * .3,
                       height: .5.h,
-                      color: AppColors.primaryGrey),
-                  const Text('Or',
-                          style: TextStyle(color: AppColors.primaryGrey))
+                      color: AppColors.lightGrey),
+                  const Text('Or', style: TextStyle(color: AppColors.lightGrey))
                       .paddingSymmetric(horizontal: 20.w),
                   Container(
-                      width: width * .4,
+                      width: width * .38,
                       height: .5.h,
-                      color: AppColors.primaryGrey),
+                      color: AppColors.lightGrey),
                 ],
-              ),
-              TextFieldWithLabelWidget(
-                  controller: TextEditingController(),
-                  prefixWidget: SizedBox(
-                    width: 50.w,
-                    child: GestureDetector(
-                      onTap: () {
-                        _showCountryPicker(context);
-                      },
-                      child: Row(
-                        children: [
-                          RotatedBox(
-                              quarterTurns: 3,
-                              child: Icon(
-                                Icons.chevron_left,
-                                color: currentTheme.textTheme.bodyLarge!.color!,
-                                size: 20,
-                              )),
-                          Text(
-                            _selectedPhoneCode,
-                          )
-                        ],
-                      ).paddingOnly(left: 10.w),
+              ).paddingSymmetric(vertical: 10.h),
+              TextInput(
+                labelText: 'Enter your phone number',
+                labelBehavior: FloatingLabelBehavior.never,
+                labelFontSize: 12.sp,
+                controller: _phoneController,
+                labelTextColor: currentTheme.textTheme.bodyLarge!.color,
+                hintText: '',
+                prefixWidget: SizedBox(
+                  width: width * .25,
+                  child: GestureDetector(
+                    onTap: () => _showCountryPicker(context),
+                    child: Row(
+                      children: [
+                        Text(_selectedPhoneCode,
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              color: currentTheme.textTheme.bodyLarge!.color,
+                            )).paddingOnly(left: 10.w),
+                        RotatedBox(
+                                quarterTurns: 1,
+                                child: Icon(Icons.chevron_right,
+                                    size: 20,
+                                    color: currentTheme
+                                        .textTheme.bodyLarge!.color))
+                            .paddingOnly(right: 10.w),
+                        Container(
+                            width: 1, height: 50, color: AppColors.lightGrey),
+                      ],
                     ),
                   ),
-                  title: '',
-                  labelText: 'Enter your phone number',
-                  keyboardType: TextInputType.phone,
-                  validator: (val) => Validator.validateDigit(val)),
-              RichText(
-                  text: TextSpan(
-                text: 'Already have an account?',
-                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
-                children: const <TextSpan>[
-                  TextSpan(
-                      text: '\'Free Tomorrow?\'',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                ],
-              ))
+                ),
+                borderColor: currentTheme.textTheme.bodyLarge!.color,
+                focusedBorderColor: currentTheme.textTheme.bodyLarge!.color,
+                validator: (value) => Validator.validatephone(value!),
+                focusNode: null,
+                onChanged: (val) {
+                  // setState(() {
+                  //   if (val == null || val.isEmpty) {}
+                  // });
+
+                  return val;
+                },
+                keyboardType: TextInputType.phone,
+                enabled: true,
+                isPassword: false,
+                textColor: currentTheme.textTheme.bodyLarge!.color,
+              ).paddingOnly(bottom: 50.h),
+              Button(
+                onPressed: () {
+                  _phoneController.text = _phoneController.text.trim();
+                  AutoRouter.of(context).push(OtpRoute(
+                    phoneNumber: _phoneController.text,
+                    phoneCode: _selectedPhoneCode,
+                  ));
+                },
+                text: 'Continue',
+                color: AppColors.primary,
+                textColor: Colors.white,
+                fontWeight: FontWeight.bold,
+              ).paddingOnly(bottom: 20.h),
             ],
-          ),
+          ).paddingSymmetric(horizontal: 20.w, vertical: 10.h),
         ),
       ),
     );
@@ -151,14 +170,14 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
           prefixIcon: Icon(Icons.search),
           border: OutlineInputBorder(
             borderSide: BorderSide(
-              color: AppColors.primaryGrey,
+              color: AppColors.lightGrey,
             ),
           ),
         ),
       ),
       onSelect: (Country ctry) {
         setState(() {
-          _selectedPhoneCode = ctry.phoneCode;
+          _selectedPhoneCode = '+${ctry.phoneCode}';
           _selectedCountry = ctry.name;
         });
       },

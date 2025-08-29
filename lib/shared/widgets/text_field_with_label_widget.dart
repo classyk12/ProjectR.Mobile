@@ -7,10 +7,12 @@ import 'package:get/utils.dart';
 
 class TextFieldWithLabelWidget extends StatelessWidget {
   final String title;
+  final Color? titleColor;
   final String labelText;
   final Widget? prefixWidget;
   final Widget? suffixWidget;
   final TextInputType keyboardType;
+  final int? maxLines;
   final String? Function(String?)? validator;
   final TextEditingController controller;
   final Color? disabledBorderColor;
@@ -21,7 +23,9 @@ class TextFieldWithLabelWidget extends StatelessWidget {
       required this.labelText,
       required this.keyboardType,
       required this.controller,
+      this.titleColor,
       this.validator,
+      this.maxLines,
       this.suffixWidget,
       this.enabled = true,
       this.disabledBorderColor,
@@ -31,9 +35,11 @@ class TextFieldWithLabelWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return _dataField(context,
         title: title,
+        titleColor: titleColor ?? AppColors.primary,
         labelText: labelText,
         prefixWidget: prefixWidget,
         enabled: enabled!,
+        maxLines: maxLines,
         suffixWidget: suffixWidget,
         validator: validator,
         disabledBorderColor: disabledBorderColor,
@@ -48,8 +54,10 @@ Widget _dataField(
   required String labelText,
   required TextInputType keyboardType,
   required TextEditingController controller,
+  Color? titleColor,
   Widget? prefixWidget,
   Widget? suffixWidget,
+  int? maxLines,
   bool enabled = true,
   Color? disabledBorderColor,
   String? Function(String?)? validator,
@@ -63,26 +71,34 @@ Widget _dataField(
             Text(title,
                     style: TextStyle(
                         fontFamily: AppTextStyles.fontFamily,
-                        color: Theme.of(context).textTheme.bodyLarge!.color!))
+                        fontSize: 10.sp,
+                        color: Theme.of(context).textTheme.bodyLarge!.color))
                 .paddingSymmetric(vertical: 10.h),
-            Text(' *',
+            Text('*',
                     style: TextStyle(
                         fontFamily: AppTextStyles.fontFamily,
+                        fontSize: 10.sp,
                         color: validator == null
                             ? AppColors.transparent
-                            : AppColors.red))
+                            : Theme.of(context).textTheme.bodyLarge!.color))
                 .paddingSymmetric(vertical: 10.h),
           ],
         ),
         TextInput(
             enabled: enabled,
             labelText: labelText,
-            labelTextColor: AppColors.primary,
-            borderColor: AppColors.primary,
+            labelTextColor: AppColors.darkGrey,
+            labelFontSize: 10.sp,
+            hintTextSize: 10.sp,
+            labelTextAlign: Alignment.topLeft,
+            hintText: labelText,
+            borderColor: Theme.of(context).textTheme.bodyLarge!.color,
             validator: validator,
             labelBehavior: FloatingLabelBehavior.never,
             focusNode: null,
             prefixWidget: prefixWidget,
+            focusedBorderColor: Theme.of(context).textTheme.bodyLarge!.color,
+            maxLines: maxLines ?? 1,
             controller: controller,
             disabledBorderColor: disabledBorderColor,
             keyboardType: keyboardType,

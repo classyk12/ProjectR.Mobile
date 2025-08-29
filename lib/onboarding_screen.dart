@@ -132,9 +132,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Future setVisited(bool isLogin) async {
     await state!.set(VISITED_STORAGE_KEY, 'true');
     if (context.mounted) {
-      AutoRouter.of(context).pushAndPopUntil(
-          AuthenticationRoute(isLogin: isLogin),
-          predicate: (_) => false);
+      AutoRouter.of(context)
+          .pushAndPopUntil(const AuthenticationRoute(), predicate: (_) => false);
     }
   }
 

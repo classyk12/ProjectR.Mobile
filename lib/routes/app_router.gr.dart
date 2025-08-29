@@ -8,63 +8,67 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:flutter/material.dart' as _i5;
+import 'package:auto_route/auto_route.dart' as _i11;
+import 'package:flutter/material.dart' as _i12;
 import 'package:projectr/modules/authentication/views/authentication_screen.dart'
     as _i1;
-import 'package:projectr/onboarding_screen.dart' as _i2;
-import 'package:projectr/splash_screen.dart' as _i3;
+import 'package:projectr/modules/authentication/views/otp_screen.dart' as _i4;
+import 'package:projectr/modules/availability/views/setup_availability_screen.dart'
+    as _i5;
+import 'package:projectr/modules/business_profile/views/setup_business_completion_screen.dart'
+    as _i6;
+import 'package:projectr/modules/business_profile/views/setup_business_detail_screen.dart'
+    as _i7;
+import 'package:projectr/modules/business_profile/views/setup_business_location_screen.dart'
+    as _i8;
+import 'package:projectr/modules/business_profile/views/setup_profile_screen.dart'
+    as _i9;
+import 'package:projectr/modules/home/views/home_screen.dart' as _i2;
+import 'package:projectr/onboarding_screen.dart' as _i3;
+import 'package:projectr/splash_screen.dart' as _i10;
 
 /// generated route for
 /// [_i1.AuthenticationScreen]
-class AuthenticationRoute extends _i4.PageRouteInfo<AuthenticationRouteArgs> {
-  AuthenticationRoute({
-    _i5.Key? key,
-    required bool isLogin,
-    List<_i4.PageRouteInfo>? children,
-  }) : super(
+class AuthenticationRoute extends _i11.PageRouteInfo<void> {
+  const AuthenticationRoute({List<_i11.PageRouteInfo>? children})
+      : super(
           AuthenticationRoute.name,
-          args: AuthenticationRouteArgs(
-            key: key,
-            isLogin: isLogin,
-          ),
           initialChildren: children,
         );
 
   static const String name = 'AuthenticationRoute';
 
-  static _i4.PageInfo page = _i4.PageInfo(
+  static _i11.PageInfo page = _i11.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<AuthenticationRouteArgs>();
-      return _i1.AuthenticationScreen(
-        key: args.key,
-        isLogin: args.isLogin,
-      );
+      return const _i1.AuthenticationScreen();
     },
   );
 }
 
-class AuthenticationRouteArgs {
-  const AuthenticationRouteArgs({
-    this.key,
-    required this.isLogin,
-  });
+/// generated route for
+/// [_i2.HomeScreen]
+class HomeRoute extends _i11.PageRouteInfo<void> {
+  const HomeRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          HomeRoute.name,
+          initialChildren: children,
+        );
 
-  final _i5.Key? key;
+  static const String name = 'HomeRoute';
 
-  final bool isLogin;
-
-  @override
-  String toString() {
-    return 'AuthenticationRouteArgs{key: $key, isLogin: $isLogin}';
-  }
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      return const _i2.HomeScreen();
+    },
+  );
 }
 
 /// generated route for
-/// [_i2.OnboardingScreen]
-class OnboardingRoute extends _i4.PageRouteInfo<void> {
-  const OnboardingRoute({List<_i4.PageRouteInfo>? children})
+/// [_i3.OnboardingScreen]
+class OnboardingRoute extends _i11.PageRouteInfo<void> {
+  const OnboardingRoute({List<_i11.PageRouteInfo>? children})
       : super(
           OnboardingRoute.name,
           initialChildren: children,
@@ -72,18 +76,165 @@ class OnboardingRoute extends _i4.PageRouteInfo<void> {
 
   static const String name = 'OnboardingRoute';
 
-  static _i4.PageInfo page = _i4.PageInfo(
+  static _i11.PageInfo page = _i11.PageInfo(
     name,
     builder: (data) {
-      return const _i2.OnboardingScreen();
+      return const _i3.OnboardingScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i3.SplashScreen]
-class SplashRoute extends _i4.PageRouteInfo<void> {
-  const SplashRoute({List<_i4.PageRouteInfo>? children})
+/// [_i4.OtpScreen]
+class OtpRoute extends _i11.PageRouteInfo<OtpRouteArgs> {
+  OtpRoute({
+    _i12.Key? key,
+    required String phoneNumber,
+    required String phoneCode,
+    List<_i11.PageRouteInfo>? children,
+  }) : super(
+          OtpRoute.name,
+          args: OtpRouteArgs(
+            key: key,
+            phoneNumber: phoneNumber,
+            phoneCode: phoneCode,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'OtpRoute';
+
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<OtpRouteArgs>();
+      return _i4.OtpScreen(
+        key: args.key,
+        phoneNumber: args.phoneNumber,
+        phoneCode: args.phoneCode,
+      );
+    },
+  );
+}
+
+class OtpRouteArgs {
+  const OtpRouteArgs({
+    this.key,
+    required this.phoneNumber,
+    required this.phoneCode,
+  });
+
+  final _i12.Key? key;
+
+  final String phoneNumber;
+
+  final String phoneCode;
+
+  @override
+  String toString() {
+    return 'OtpRouteArgs{key: $key, phoneNumber: $phoneNumber, phoneCode: $phoneCode}';
+  }
+}
+
+/// generated route for
+/// [_i5.SetupAvailabilityScreen]
+class SetupAvailabilityRoute extends _i11.PageRouteInfo<void> {
+  const SetupAvailabilityRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          SetupAvailabilityRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SetupAvailabilityRoute';
+
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      return const _i5.SetupAvailabilityScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i6.SetupBusinessCompletionScreen]
+class SetupBusinessCompletionRoute extends _i11.PageRouteInfo<void> {
+  const SetupBusinessCompletionRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          SetupBusinessCompletionRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SetupBusinessCompletionRoute';
+
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      return const _i6.SetupBusinessCompletionScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i7.SetupBusinessDetailScreen]
+class SetupBusinessDetailRoute extends _i11.PageRouteInfo<void> {
+  const SetupBusinessDetailRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          SetupBusinessDetailRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SetupBusinessDetailRoute';
+
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      return const _i7.SetupBusinessDetailScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i8.SetupBusinessLocationScreen]
+class SetupBusinessLocationRoute extends _i11.PageRouteInfo<void> {
+  const SetupBusinessLocationRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          SetupBusinessLocationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SetupBusinessLocationRoute';
+
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      return const _i8.SetupBusinessLocationScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i9.SetupBusinessProfileScreen]
+class SetupBusinessProfileRoute extends _i11.PageRouteInfo<void> {
+  const SetupBusinessProfileRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          SetupBusinessProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SetupBusinessProfileRoute';
+
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      return const _i9.SetupBusinessProfileScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i10.SplashScreen]
+class SplashRoute extends _i11.PageRouteInfo<void> {
+  const SplashRoute({List<_i11.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -91,10 +242,10 @@ class SplashRoute extends _i4.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static _i4.PageInfo page = _i4.PageInfo(
+  static _i11.PageInfo page = _i11.PageInfo(
     name,
     builder: (data) {
-      return const _i3.SplashScreen();
+      return const _i10.SplashScreen();
     },
   );
 }
