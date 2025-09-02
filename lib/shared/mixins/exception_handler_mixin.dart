@@ -18,9 +18,7 @@ mixin ExceptionHandlerMixin on NetworkService {
       if (res.statusCode == 200 || res.statusCode == 201) {
         return Right(
           BaseResponse(
-              statusCode: res.statusCode ?? 200,
-              message: res.statusMessage,
-              data: res.data),
+              status: true, message: res.statusMessage, data: res.data),
         );
       } else {
         ///return the raw error response and deserialize according to endpoint requirement. Because multiple base urls may be used and their error responses may not be uniform. This allows the specific endpoint to handle the error as they wish

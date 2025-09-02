@@ -19,8 +19,4 @@ class PaginatedResponse<T> {
         skip: json['skip'] ?? 0,
         data: data,
       );
-  @override
-  String toString() {
-    return 'PaginatedResponse(total:$total, skip:$skip, data:${data.length})';
-  }
 }

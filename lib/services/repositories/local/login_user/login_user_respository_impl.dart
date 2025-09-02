@@ -1,30 +1,30 @@
 import 'package:projectr/services/repositories/local/login_user/local_user_repository_data_source.dart';
 import 'package:projectr/services/repositories/local/login_user/login_user_repository.dart';
-import 'package:projectr/shared/domain/models/authentication/login_model.dart';
+import 'package:projectr/shared/domain/models/authentication/auth_models.dart';
 
 class LoginUserRepositoryImpl extends LoginUserRepository {
-  final LoginUserDataSource dataSource;
+  final LoginUserDataSource _service;
 
-  LoginUserRepositoryImpl(this.dataSource);
+  LoginUserRepositoryImpl(this._service);
 
   @override
-  Future<UserData?> get() async {
-    var data = await dataSource.fetchUser();
+  Future<LoggedInUser?> get() async {
+    var data = await _service.fetchUser();
     return data;
   }
 
   @override
-  Future<bool> save(UserData user) async {
-    return await dataSource.saveUser(user);
+  Future<bool> save(LoggedInUser user) async {
+    return await _service.saveUser(user);
   }
 
   @override
   Future<bool> isUserExist() async {
-    return await dataSource.hasUser();
+    return await _service.hasUser();
   }
 
   @override
   Future<bool> removeUser() async {
-    return await dataSource.removeUser();
+    return await _service.removeUser();
   }
 }
