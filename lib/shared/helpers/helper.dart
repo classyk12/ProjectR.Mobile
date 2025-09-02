@@ -1,3 +1,4 @@
+import 'package:projectr/shared/configs/app_configs.dart';
 import 'package:projectr/shared/constants.dart';
 import 'package:projectr/shared/enums.dart';
 import 'package:flutter/material.dart';
@@ -25,14 +26,12 @@ class AppHelper {
     await dotenv.load();
     switch (flavour) {
       case Flavor.dev:
+        AppConfigs.baseUrl = dotenv.env['BASE_URL_DEV']!;
+
         break;
       default:
       // AppConfigs.baseUrl = dotenv.env['BASE_URL_PROD']!;
     }
-  }
-
-  static List<String> getRelationships() {
-    return ['Father', 'Mother', 'Sibling', 'Friend'];
   }
 
   static String formatCurrency(dynamic x) {

@@ -33,9 +33,6 @@ class _MyAppState extends ConsumerState<MyApp> {
 
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
-      // onTap: () => _initializeTimer(),
-      // onPanDown: (_) => _initializeTimer(),
-      // onPanUpdate: (_) => _initializeTimer(),
       child: DismissKeyboard(
         child: ScreenUtilInit(
           designSize: const Size(390, 844),
@@ -53,19 +50,6 @@ class _MyAppState extends ConsumerState<MyApp> {
       ),
     );
   }
-
-  // void _initializeTimer() {
-  //   if (_timer != null) {
-  //     _timer!.cancel();
-  //   }
-  //   // setup action after 10 minutes
-  //   _timer = Timer(const Duration(minutes: 10), () {
-  //     _timer?.cancel();
-  //     _timer = null;
-  //     ref.read(themeProvider.notifier).switchModule(AppModule.general);
-  //     appRouter.replaceAll([const LoginRoute()]);
-  //   });
-  // }
 }
 
 Future<void> loadApp(F appFlavour) async {
