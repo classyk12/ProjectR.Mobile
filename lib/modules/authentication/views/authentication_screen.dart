@@ -55,7 +55,9 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
               ).paddingOnly(bottom: 40.h),
               Button(
                 fontWeight: FontWeight.normal,
-                onPressed: () async {},
+                onPressed: () async {
+                  //TODO:  Implement Google Sign-In
+                },
                 color: AppColors.transparent,
                 borderColor: currentTheme.textTheme.bodyLarge!.color,
                 fontSize: 12.sp,
