@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:projectr/providers/app_theme_provider.dart';
-import 'package:projectr/shared/configs/app_configs.dart';
 import 'package:projectr/shared/constants.dart';
 import 'package:projectr/shared/enums.dart';
 import 'package:flutter/foundation.dart';
@@ -29,7 +28,7 @@ void switchTheme({BuildContext? context, WidgetRef? ref}) {
 }
 
 launchbrowser({String? urlString}) async {
-  var baseUrl = AppConfigs.websiteUrl;
+  var baseUrl = '';
   String url = urlString ?? baseUrl;
   debugPrint(url.toString());
   var url1 = Uri.parse(url);

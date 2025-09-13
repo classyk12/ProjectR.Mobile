@@ -11,6 +11,7 @@ class AppTheme {
         brightness: Brightness.dark,
         fontFamily: AppTextStyles.fontFamily,
         primaryColor: Colors.white,
+        primaryColorLight: AppColors.black,
         buttonTheme: const ButtonThemeData(
             colorScheme: ColorScheme(
                 brightness: Brightness.dark,
@@ -66,6 +67,7 @@ class AppTheme {
         brightness: Brightness.light,
         fontFamily: AppTextStyles.fontFamily,
         primaryColor: AppColors.primary,
+        primaryColorLight: AppColors.white,
         iconTheme: const IconThemeData(color: AppColors.black),
         textTheme: TextThemes.primaryTextTheme,
         buttonTheme: const ButtonThemeData(

@@ -23,7 +23,8 @@ class SocketService implements ISocketService {
   void initialize() {
     try {
       socket = IO.io(
-          AppConfigs.socketUrl,
+          '',
+          // AppConfigs.socketUrl,
           IO.OptionBuilder()
               .setTransports(['websocket'])
               .enableAutoConnect()

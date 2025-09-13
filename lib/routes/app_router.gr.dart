@@ -25,6 +25,8 @@ import 'package:projectr/modules/business_profile/views/setup_profile_screen.dar
     as _i9;
 import 'package:projectr/modules/home/views/home_screen.dart' as _i2;
 import 'package:projectr/onboarding_screen.dart' as _i3;
+import 'package:projectr/shared/domain/models/authentication/auth_models.dart'
+    as _i13;
 import 'package:projectr/splash_screen.dart' as _i10;
 
 /// generated route for
@@ -89,15 +91,13 @@ class OnboardingRoute extends _i11.PageRouteInfo<void> {
 class OtpRoute extends _i11.PageRouteInfo<OtpRouteArgs> {
   OtpRoute({
     _i12.Key? key,
-    required String phoneNumber,
-    required String phoneCode,
+    required _i13.PhoneNumberLoginResponseModel otpResponseModel,
     List<_i11.PageRouteInfo>? children,
   }) : super(
           OtpRoute.name,
           args: OtpRouteArgs(
             key: key,
-            phoneNumber: phoneNumber,
-            phoneCode: phoneCode,
+            otpResponseModel: otpResponseModel,
           ),
           initialChildren: children,
         );
@@ -110,8 +110,7 @@ class OtpRoute extends _i11.PageRouteInfo<OtpRouteArgs> {
       final args = data.argsAs<OtpRouteArgs>();
       return _i4.OtpScreen(
         key: args.key,
-        phoneNumber: args.phoneNumber,
-        phoneCode: args.phoneCode,
+        otpResponseModel: args.otpResponseModel,
       );
     },
   );
@@ -120,19 +119,16 @@ class OtpRoute extends _i11.PageRouteInfo<OtpRouteArgs> {
 class OtpRouteArgs {
   const OtpRouteArgs({
     this.key,
-    required this.phoneNumber,
-    required this.phoneCode,
+    required this.otpResponseModel,
   });
 
   final _i12.Key? key;
 
-  final String phoneNumber;
-
-  final String phoneCode;
+  final _i13.PhoneNumberLoginResponseModel otpResponseModel;
 
   @override
   String toString() {
-    return 'OtpRouteArgs{key: $key, phoneNumber: $phoneNumber, phoneCode: $phoneCode}';
+    return 'OtpRouteArgs{key: $key, otpResponseModel: $otpResponseModel}';
   }
 }
 

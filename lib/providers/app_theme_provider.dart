@@ -37,7 +37,7 @@ class ThemeNotifier extends StateNotifier<ThemeState> {
     storageService.set(APP_THEME_STORAGE_KEY, state.mode.name);
   }
 
-  void switchModule(AppModule module) {
+  void switchModule() {
     state = ThemeState(mode: state.mode);
   }
 

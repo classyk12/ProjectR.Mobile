@@ -86,12 +86,12 @@ class PhoneNumberLoginResponseModel {
 }
 
 class LoginResponseModel {
-  final LoggedInUser user;
-  final String token;
+  final LoggedInUser? user;
+  final String? token;
   final String? refreshToken;
   LoginResponseModel({
-    required this.user,
-    required this.token,
+    this.user,
+    this.token,
     this.refreshToken,
   });
 
@@ -109,7 +109,7 @@ class LoginResponseModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'user': user.toMap(),
+      'user': user!.toMap(),
       'refreshToken': refreshToken,
       'authToken': token,
     };
