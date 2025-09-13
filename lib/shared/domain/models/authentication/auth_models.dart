@@ -75,9 +75,8 @@ class PhoneNumberLoginResponseModel {
   factory PhoneNumberLoginResponseModel.fromMap(Map<String, dynamic> map) {
     return PhoneNumberLoginResponseModel(
       otpToken: map['otpToken'] ?? '',
-      expiresAt: map['expiresAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['expiresAt'])
-          : null,
+      expiresAt:
+          map['expiresAt'] != null ? DateTime.parse(map['expiresAt']) : null,
       phoneNumber: map['phoneNumber'] ?? '',
       phoneCode: map['phoneCode'] ?? ' ',
       type: map['type']?.toInt(),

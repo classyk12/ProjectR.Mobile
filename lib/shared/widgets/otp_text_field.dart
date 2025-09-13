@@ -7,11 +7,13 @@ class OTPInputField extends StatefulWidget {
   final TextEditingController controller;
   final Color borderColor;
   final bool obscureText;
+  final int length;
 
   const OTPInputField({
     super.key,
     this.borderColor = AppColors.primary,
     this.obscureText = true,
+    this.length = 6,
     required this.controller,
   });
 
@@ -26,8 +28,8 @@ class _OTPInputFieldState extends State<OTPInputField> {
   @override
   void initState() {
     super.initState();
-    _controllers = List.generate(6, (_) => TextEditingController());
-    _focusNodes = List.generate(6, (_) => FocusNode());
+    _controllers = List.generate(widget.length, (_) => TextEditingController());
+    _focusNodes = List.generate(widget.length, (_) => FocusNode());
   }
 
   @override
@@ -42,7 +44,7 @@ class _OTPInputFieldState extends State<OTPInputField> {
   }
 
   _onChange({String value = '', int index = 0}) {
-    if (value.length == 1 && index < 5) {
+    if (value.length == 1 && index < widget.length - 1) {
       FocusScope.of(context).requestFocus(_focusNodes[index + 1]);
     } else if (value.isEmpty && index > 0) {
       FocusScope.of(context).requestFocus(_focusNodes[index - 1]);
@@ -60,7 +62,7 @@ class _OTPInputFieldState extends State<OTPInputField> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: List.generate(6, (index) {
+      children: List.generate(widget.length, (index) {
         return SizedBox(
           width: 50.w,
           height: 50.h,

@@ -55,14 +55,6 @@ class DioNetworkService extends NetworkService with ExceptionHandlerMixin {
       {Map<String, dynamic>? data}) async {
     customDebugPrint(message: 'URL: $endpoint - ${data.toString()}');
 
-    // final connectivity = await Connectivity().checkConnectivity();
-
-    // if (connectivity.contains(ConnectivityResult.none)) {
-    //   _failedAPIRequests.add(() => post(endpoint, data: data));
-    //   return Left(AppException(
-    //       message: 'No Internet Connection', error: 'No Internet Connection'));
-    // }
-
     final res = handleException(
       () => dio.post(
         endpoint,

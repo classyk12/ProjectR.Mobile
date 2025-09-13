@@ -69,22 +69,22 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   fontSize: 26.sp,
                   color: AppColors.white),
             ),
-          ).paddingOnly(bottom: 250.h),
+          ).paddingOnly(bottom: 200.h),
           Align(alignment: Alignment.bottomCenter, child: _getSubtitleWidget())
-              .paddingOnly(bottom: 190.h),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Button(
-              fontWeight: FontWeight.bold,
-              width: MediaQuery.of(context).size.width * .85,
-              onPressed: () async {
-                await setVisited(true);
-              },
-              color: AppColors.white,
-              text: 'Log into your account',
-              textColor: currentTheme.primaryColor,
-            ),
-          ).paddingOnly(top: 20.h, bottom: 50.h),
+              .paddingOnly(bottom: 150.h),
+          // Align(
+          //   alignment: Alignment.bottomCenter,
+          //   child: Button(
+          //     fontWeight: FontWeight.bold,
+          //     width: MediaQuery.of(context).size.width * .85,
+          //     onPressed: () async {
+          //       await setVisited(true);
+          //     },
+          //     color: AppColors.white,
+          //     text: 'Log into your account',
+          //     textColor: currentTheme.primaryColor,
+          //   ),
+          // ).paddingOnly(top: 20.h, bottom: 50.h),
           Align(
             alignment: Alignment.bottomCenter,
             child: Button(
@@ -94,9 +94,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 await setVisited(false);
               },
               color: currentTheme.primaryColor,
-              text: 'Sign Up',
+              text: 'Continue',
             ),
-          ).paddingOnly(bottom: 115.h, top: 20.h),
+          ).paddingOnly(bottom: 55.h, top: 40.h),
         ],
       ),
     );
@@ -132,8 +132,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Future setVisited(bool isLogin) async {
     await state!.set(VISITED_STORAGE_KEY, 'true');
     if (context.mounted) {
-      AutoRouter.of(context)
-          .pushAndPopUntil(const AuthenticationRoute(), predicate: (_) => false);
+      AutoRouter.of(context).pushAndPopUntil(const AuthenticationRoute(),
+          predicate: (_) => false);
     }
   }
 

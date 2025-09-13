@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectr/providers/auth_provider.dart';
 import 'package:projectr/shared/domain/models/authentication/auth_models.dart';
@@ -7,15 +8,17 @@ import 'package:projectr/shared/exceptions/app_exception.dart';
 
 final isPasswordProvider = StateProvider<bool>((ref) => true);
 final shouldListenToProvider = StateProvider.autoDispose<bool>((ref) => false);
+final shouldListenToOtpProvider =
+    StateProvider.autoDispose<bool>((ref) => false);
 final shouldListenToGoogleAuthProvider =
     StateProvider.autoDispose<bool>((ref) => false);
 CompleteLoginWithPhoneNumberModel? completeLoginWithPhoneNumberModel;
 
-final phoneCode = '';
-final phoneNumber = '';
+String phoneCode = '';
+String phoneNumber = '';
 
-final googleAuthToken = '';
-final email = '';
+String googleAuthToken = '';
+String email = '';
 const SocialLoginType socialLoginType = SocialLoginType.google;
 
 final phoneNumberLoginProvider = FutureProvider.autoDispose<
@@ -32,10 +35,14 @@ final phoneNumberLoginProvider = FutureProvider.autoDispose<
 final completePhoneNumberLoginProvider =
     FutureProvider.autoDispose<Either<AppException, LoginResponseModel>>(
         (ref) async {
-  if (ref.watch(shouldListenToProvider) == true) {
-    var authRepo = ref.watch(authRepositoryProvider);
-    return authRepo.completePhoneNumberLogin(
-        model: completeLoginWithPhoneNumberModel!);
+  if (ref.watch(shouldListenToOtpProvider) == true) {
+    try {
+      var authRepo = ref.watch(authRepositoryProvider);
+      return authRepo.completePhoneNumberLogin(
+          model: completeLoginWithPhoneNumberModel!);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   return Right(LoginResponseModel());

@@ -40,7 +40,7 @@ class AuthService implements IAuthService {
         },
         (response) {
           var data = response.data;
-          var res = PhoneNumberLoginResponseModel.fromMap(data);
+          var res = PhoneNumberLoginResponseModel.fromMap(data['data']);
           return Right(res);
         },
       );
@@ -65,7 +65,7 @@ class AuthService implements IAuthService {
         },
         (response) {
           var data = response.data;
-          var login = LoginResponseModel.fromMap(data);
+          var login = LoginResponseModel.fromMap(data['data']);
           return Right(login);
         },
       );

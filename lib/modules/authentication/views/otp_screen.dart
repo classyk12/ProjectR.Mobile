@@ -12,6 +12,7 @@ import 'package:projectr/routes/app_router.gr.dart';
 import 'package:projectr/shared/domain/models/authentication/auth_models.dart';
 import 'package:projectr/shared/domain/models/either.dart';
 import 'package:projectr/shared/exceptions/app_exception.dart';
+import 'package:projectr/shared/helpers/util.dart';
 import 'package:projectr/shared/themes/app_colors.dart';
 import 'package:projectr/shared/widgets/button.dart';
 import 'package:projectr/shared/widgets/otp_text_field.dart';
@@ -88,7 +89,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                 ).paddingOnly(bottom: 5.h),
                 RichText(
                   text: TextSpan(
-                    text: 'Enter the Six (6) digit code',
+                    text: 'Enter the Six (5) digit code',
                     style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
@@ -124,6 +125,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                 ).paddingOnly(bottom: 10.h),
                 OTPInputField(
                   obscureText: false,
+                  length: 5,
                   controller: _otpController,
                   borderColor: currentTheme.textTheme.bodyLarge!.color!,
                 ),
@@ -164,30 +166,39 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
                                 color: AppColors.darkGrey),
-                            children: <TextSpan>[
+                            children: const <TextSpan>[
                               TextSpan(
-                                  text: 'Resend Code',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      height: 2,
-                                      color: currentTheme.primaryColorDark)),
+                                text: 'Resend Code',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    height: 2,
+                                    color: Colors.blue),
+                              )
                             ],
                           ),
                         ).paddingOnly(bottom: 20.h, top: 5.h),
                       ),
                 Button(
                   onPressed: () {
-                    if (_otpController.text.length < 6) {
+                    if (_otpController.text.length < 5) {
                       ScaffoldMessenger.of(context).showSnackBar(showToast(
                           message: 'Please enter a valid 6-digit OTP code'));
                       return;
                     }
 
                     _timer!.cancel();
-                    ref.watch(shouldListenToProvider.notifier).state = true;
+                    ref.watch(shouldListenToOtpProvider.notifier).state = true;
                     setState(() {
                       isLoading = true;
                     });
+                    completeLoginWithPhoneNumberModel =
+                        CompleteLoginWithPhoneNumberModel(
+                      otp: _otpController.text.trim(),
+                      token: model!.otpToken,
+                      phoneCode: model!.phoneCode,
+                      type: model!.type,
+                      phoneNumber: model!.phoneNumber,
+                    );
                     ref.invalidate(completePhoneNumberLoginProvider);
                   },
                   text: 'Continue',
@@ -195,6 +206,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                   textColor: currentTheme.primaryColorLight,
                   fontWeight: FontWeight.bold,
                 ).paddingOnly(bottom: 20.h),
+                ThemeSwitch(ref: ref).paddingOnly(bottom: 20.h),
               ],
             ).paddingSymmetric(horizontal: 30.w, vertical: 10.h),
           ),
@@ -211,7 +223,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
           skipLoadingOnRefresh: false,
           skipLoadingOnReload: false,
           data: (data) {
-            if (ref.watch(shouldListenToProvider.notifier).state == false) {
+            if (ref.watch(shouldListenToOtpProvider.notifier).state == false) {
               return;
             }
             setState(() {
@@ -219,8 +231,9 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
             });
             data.fold((err) {
               ScaffoldMessenger.of(context)
-                  .showSnackBar(showToast(message: err.message ?? err.error));
+                  .showSnackBar(showToast(message: err.error ?? err.message));
             }, (res) {
+              //TODO: save user data to shared prefs
               AutoRouter.of(context).pushAndPopUntil(
                   const SetupBusinessProfileRoute(),
                   predicate: (_) => false);

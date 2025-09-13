@@ -12,7 +12,6 @@ import 'package:projectr/shared/domain/models/authentication/auth_models.dart';
 import 'package:projectr/shared/domain/models/either.dart';
 import 'package:projectr/shared/exceptions/app_exception.dart';
 import 'package:projectr/shared/helpers/helper.dart';
-import 'package:projectr/shared/helpers/util.dart';
 import 'package:projectr/shared/helpers/validator.dart';
 import 'package:projectr/shared/themes/app_colors.dart';
 import 'package:projectr/shared/themes/text_styles.dart';
@@ -147,6 +146,8 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                       ));
                       return;
                     }
+                    phoneCode = _selectedPhoneCode;
+                    phoneNumber = _phoneController.text.trim();
                     ref.watch(shouldListenToProvider.notifier).state = true;
                     setState(() {
                       isLoading = true;
@@ -158,7 +159,6 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                   textColor: currentTheme.primaryColorLight,
                   fontWeight: FontWeight.bold,
                 ).paddingOnly(bottom: 20.h),
-                ThemeSwitch(ref: ref).paddingOnly(bottom: 20.h),
               ],
             ).paddingSymmetric(horizontal: 20.w, vertical: 10.h),
           ),
@@ -184,8 +184,9 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
             });
             data.fold((err) {
               ScaffoldMessenger.of(context)
-                  .showSnackBar(showToast(message: err.message ?? err.error));
+                  .showSnackBar(showToast(message: err.error ?? err.message));
             }, (res) {
+              ref.watch(shouldListenToProvider.notifier).state = false;
               AutoRouter.of(context).push(OtpRoute(otpResponseModel: res));
             });
           },
