@@ -1,22 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:projectr/shared/domain/models/either.dart';
-import 'package:projectr/shared/exceptions/app_exception.dart';
-
 class BaseResponse {
-  final int statusCode;
+  final bool status;
   final String? message;
   final dynamic data;
 
   BaseResponse({
-    required this.statusCode,
+    required this.status,
     this.message,
     required this.data,
   });
-  @override
-  String toString() =>
-      'BaseResponse(statusCode: $statusCode, message: $message, data: $data)';
 
   BaseResponse copyWith({
     int? statusCode,
@@ -24,7 +18,7 @@ class BaseResponse {
     dynamic data,
   }) {
     return BaseResponse(
-      statusCode: statusCode ?? this.statusCode,
+      status: status,
       message: message ?? this.message,
       data: data ?? this.data,
     );
@@ -32,7 +26,7 @@ class BaseResponse {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'statusCode': statusCode,
+      'status': status,
       'message': message,
       'data': data,
     };
@@ -40,7 +34,7 @@ class BaseResponse {
 
   factory BaseResponse.fromMap(Map<String, dynamic> map) {
     return BaseResponse(
-      statusCode: map['statusCode'] as int,
+      status: map['status'] ?? false,
       message: map['message'] != null ? map['message'] as String : null,
       data: map['data'] as dynamic,
     );
@@ -55,15 +49,11 @@ class BaseResponse {
   bool operator ==(covariant BaseResponse other) {
     if (identical(this, other)) return true;
 
-    return other.statusCode == statusCode &&
+    return other.status == status &&
         other.message == message &&
         other.data == data;
   }
 
   @override
-  int get hashCode => statusCode.hashCode ^ message.hashCode ^ data.hashCode;
-}
-
-extension ResponseExtension on BaseResponse {
-  Right<AppException, BaseResponse> get toRight => Right(this);
+  int get hashCode => status.hashCode ^ message.hashCode ^ data.hashCode;
 }

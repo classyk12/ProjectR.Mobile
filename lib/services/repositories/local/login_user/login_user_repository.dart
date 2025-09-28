@@ -1,11 +1,11 @@
-import 'package:projectr/shared/domain/models/authentication/login_model.dart';
+import 'package:projectr/shared/domain/models/authentication/auth_models.dart';
 
 abstract class LoginUserRepository {
   ///save login user in local storage
-  Future<bool> save(UserData user);
+  Future<bool> save(LoggedInUser user);
 
   ///retrieve login user from locale storage
-  Future<UserData?> get();
+  Future<LoggedInUser?> get();
 
   ///remove login user from locale storage
   Future<bool> removeUser();

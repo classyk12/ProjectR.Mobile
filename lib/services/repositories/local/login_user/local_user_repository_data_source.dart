@@ -1,11 +1,11 @@
 import 'package:projectr/shared/data/local/storage_service.dart';
-import 'package:projectr/shared/domain/models/authentication/login_model.dart';
+import 'package:projectr/shared/domain/models/authentication/auth_models.dart';
 
 abstract class LoginUserDataSource {
   String get storageKey;
 
-  Future<UserData?> fetchUser();
-  Future<bool> saveUser(UserData user);
+  Future<LoggedInUser?> fetchUser();
+  Future<bool> saveUser(LoggedInUser user);
   Future<bool> removeUser();
   Future<bool> hasUser();
 }
@@ -19,18 +19,18 @@ class LoginUserDataSourceImpl extends LoginUserDataSource {
   String get storageKey => '';
 
   @override
-  Future<UserData?> fetchUser() async {
+  Future<LoggedInUser?> fetchUser() async {
     final data = await storageService.get(storageKey);
     if (data != null && data != '') {
       final userJson = data.toString();
-      return UserData.fromJson(userJson);
+      return LoggedInUser.fromMap({});
     }
     return null;
   }
 
   @override
-  Future<bool> saveUser(UserData user) async {
-    return await storageService.set(storageKey, user.toJson());
+  Future<bool> saveUser(LoggedInUser user) async {
+    return await storageService.set(storageKey, '${user.toMap()}');
   }
 
   @override

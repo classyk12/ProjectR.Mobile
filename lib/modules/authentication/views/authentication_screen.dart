@@ -13,6 +13,10 @@ import 'package:projectr/shared/themes/text_styles.dart';
 import 'package:projectr/shared/widgets/button.dart';
 import 'package:projectr/shared/widgets/text_input.dart';
 
+// New imports
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
+
 @RoutePage()
 class AuthenticationScreen extends ConsumerStatefulWidget {
   const AuthenticationScreen({super.key});
@@ -26,10 +30,65 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
   final _formKey = GlobalKey<FormState>();
   String _selectedPhoneCode = '';
   String _selectedCountry = '';
+
   @override
-  void initState() {
-    super.initState();
+void initState() {
+  super.initState();
+  _setDefaultCountryFromLocation();
+}
+
+// Get the current location of the device when the app opens
+Future<void> _setDefaultCountryFromLocation() async {
+  bool serviceEnabled;
+  LocationPermission permission;
+
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) return;
+
+  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) return;
   }
+  if (permission == LocationPermission.deniedForever) return;
+
+  final position = await Geolocator.getCurrentPosition(
+    locationSettings: const LocationSettings(
+      accuracy: LocationAccuracy.low,
+    ),
+  );
+
+  try {
+    final placemarks = await placemarkFromCoordinates(
+      position.latitude,
+      position.longitude,
+    ).timeout(const Duration(seconds: 10)); 
+
+    if (placemarks.isNotEmpty) {
+      final countryCode = placemarks.first.isoCountryCode; 
+      if (countryCode != null) {
+        final country = CountryParser.parseCountryCode(countryCode);
+        setState(() {
+          _selectedCountry = country.name;
+          _selectedPhoneCode = '+${country.phoneCode}';
+        });
+        return;
+      }
+    }
+
+    // Fallback if placemarks is empty
+    setState(() {
+      _selectedCountry = 'Nigeria';
+      _selectedPhoneCode = '+234';
+    });
+  } catch (e) {
+    // Fallback if reverse geocoding fails
+    setState(() {
+      _selectedCountry = 'Nigeria';
+      _selectedPhoneCode = '+234';
+    });
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +114,9 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
               ).paddingOnly(bottom: 40.h),
               Button(
                 fontWeight: FontWeight.normal,
-                onPressed: () async {},
+                onPressed: () async {
+                  //TODO:  Implement Google Sign-In
+                },
                 color: AppColors.transparent,
                 borderColor: currentTheme.textTheme.bodyLarge!.color,
                 fontSize: 12.sp,
@@ -118,7 +179,6 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                   // setState(() {
                   //   if (val == null || val.isEmpty) {}
                   // });
-
                   return val;
                 },
                 keyboardType: TextInputType.phone,
@@ -156,14 +216,11 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
         searchTextStyle: AppTextStyles.body,
         textStyle: AppTextStyles.body,
         bottomSheetHeight: MediaQuery.of(context).size.height * 0.7,
-        padding:
-            EdgeInsets.only(top: 10.h), // Optional. Country list modal height
-        //Optional. Sets the border radius for the bottomsheet.
+        padding: EdgeInsets.only(top: 10.h),
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20.0),
           topRight: Radius.circular(20.0),
         ),
-        //Optional. Styles the search field.
         inputDecoration: const InputDecoration(
           labelText: 'Search',
           hintText: 'Start typing to search',

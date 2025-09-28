@@ -261,7 +261,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           return List.generate(_appointmentActions.length, (index) {
             return PopupMenuItem(
                 onTap: () {
-                  if(index == 0){
+                  if (index == 0) {
                     modalBottomSheet(
                       context,
                       Container(),
@@ -279,13 +279,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       height: MediaQuery.of(context).size.height * .5,
                       isDismissible: true,
                     );
-                  }
-                  else if(index == 1){
-
-                  }
-                  else{
-
-                  }
+                  } else if (index == 1) {
+                  } else {}
                 },
                 child: Row(children: [
                   Image.asset(
